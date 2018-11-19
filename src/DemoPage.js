@@ -7,7 +7,7 @@ import data from './data/spaces.json';
 
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
-    const path = get(props, 'match.params.path');
+    const path = get(props, 'match.url');
     return { path };
   }
 
