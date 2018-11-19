@@ -1,33 +1,22 @@
-/* eslint-disable */
+import React, { lazy, Suspense } from 'react';
+import { Switch, Route, Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
-import React, { Component } from 'react';
-import { Button } from 'reactstrap';
-
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <Button color="primary">Click</Button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+export const history = createHistory({ basename: '' });
 
-export default App;
+const DemoPage = lazy(() => import('./DemoPage'));
+
+const AppRoutes = () => (
+  <Router history={history}>
+    <Suspense fallback={<div />}>
+      <Switch>
+        <Route exact path="/" component={() => <DemoPage />} />
+        <Route path="/:path" component={() => <DemoPage />} />
+      </Switch>
+    </Suspense>
+  </Router>
+);
+
+export default AppRoutes;
