@@ -1,0 +1,24 @@
+{
+  "presets": ["react-app"],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    [
+      "import",
+      {
+        "libraryName": "reactstrap",
+        "libraryDirectory": "lib",
+        "camel2DashComponentName": false
+      },
+      "reactstrap"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "lodash",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "lodash"
+    ]
+  ]
+}
