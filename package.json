@@ -19,8 +19,7 @@
     "test": "react-app-rewired test",
     "test-dev": "react-app-rewired test --env=jsdom --watch --coverage=false",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && gh-pages -d build",
-    "api": "npx json-server ./data/spaces.json --port 9999"
+    "deploy": "yarn build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
