@@ -13,17 +13,17 @@ jest.mock('../data/spaces.json', () => [{ foo: 'bar' }]);
 describe('DemoPage', () => {
   it('should render correctly', () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={[mockPath]}>
+      <MemoryRouter initialEntries={[{ pathname: mockPath, key: 'path' }]}>
         <Route path={mockPath} render={props => <DemoPage {...props} />} />
       </MemoryRouter>
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(DemoPage)).toMatchSnapshot();
   });
 
   it('should provide correct props for TreeViewMenu', () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={[mockPath]}>
+      <MemoryRouter initialEntries={[{ pathname: mockPath, key: 'path' }]}>
         <Route path={mockPath} render={props => <DemoPage {...props} />} />
       </MemoryRouter>
     );

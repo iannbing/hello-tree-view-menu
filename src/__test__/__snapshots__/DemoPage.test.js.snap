@@ -1,168 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DemoPage should render correctly 1`] = `
-<MemoryRouter
-  initialEntries={
-    Array [
-      "/foo",
-    ]
-  }
->
-  <Router
-    history={
-      Object {
-        "action": "POP",
-        "block": [Function],
-        "canGo": [Function],
-        "createHref": [Function],
-        "entries": Array [
-          Object {
-            "hash": "",
-            "key": "1isj1v",
-            "pathname": "/foo",
-            "search": "",
-            "state": undefined,
-          },
-        ],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "index": 0,
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
+<withRouter(DemoPage)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
           "hash": "",
-          "key": "1isj1v",
+          "key": "path",
           "pathname": "/foo",
           "search": "",
-          "state": undefined,
         },
-        "push": [Function],
-        "replace": [Function],
-      }
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "path",
+        "pathname": "/foo",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
     }
-  >
-    <Route
-      path="/foo"
-      render={[Function]}
-    >
-      <withRouter(DemoPage)
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "canGo": [Function],
-            "createHref": [Function],
-            "entries": Array [
-              Object {
-                "hash": "",
-                "key": "1isj1v",
-                "pathname": "/foo",
-                "search": "",
-                "state": undefined,
-              },
-            ],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "index": 0,
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
+  }
+  location={
+    Object {
+      "hash": "",
+      "key": "path",
+      "pathname": "/foo",
+      "search": "",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/foo",
+      "url": "/foo",
+    }
+  }
+>
+  <Route>
+    <DemoPage
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "canGo": [Function],
+          "createHref": [Function],
+          "entries": Array [
+            Object {
               "hash": "",
-              "key": "1isj1v",
+              "key": "path",
               "pathname": "/foo",
               "search": "",
-              "state": undefined,
             },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
-        location={
-          Object {
+          ],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "index": 0,
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
             "hash": "",
-            "key": "1isj1v",
+            "key": "path",
             "pathname": "/foo",
             "search": "",
-            "state": undefined,
-          }
+          },
+          "push": [Function],
+          "replace": [Function],
         }
-        match={
-          Object {
-            "isExact": true,
-            "params": Object {},
-            "path": "/foo",
-            "url": "/foo",
-          }
+      }
+      location={
+        Object {
+          "hash": "",
+          "key": "path",
+          "pathname": "/foo",
+          "search": "",
         }
-      >
-        <Route>
-          <DemoPage
-            history={
-              Object {
-                "action": "POP",
-                "block": [Function],
-                "canGo": [Function],
-                "createHref": [Function],
-                "entries": Array [
-                  Object {
-                    "hash": "",
-                    "key": "1isj1v",
-                    "pathname": "/foo",
-                    "search": "",
-                    "state": undefined,
-                  },
-                ],
-                "go": [Function],
-                "goBack": [Function],
-                "goForward": [Function],
-                "index": 0,
-                "length": 1,
-                "listen": [Function],
-                "location": Object {
-                  "hash": "",
-                  "key": "1isj1v",
-                  "pathname": "/foo",
-                  "search": "",
-                  "state": undefined,
-                },
-                "push": [Function],
-                "replace": [Function],
-              }
-            }
-            location={
-              Object {
-                "hash": "",
-                "key": "1isj1v",
-                "pathname": "/foo",
-                "search": "",
-                "state": undefined,
-              }
-            }
-            match={
-              Object {
-                "isExact": true,
-                "params": Object {},
-                "path": "/foo",
-                "url": "/foo",
-              }
-            }
-          >
-            <mock-tree-view-menu
-              data={
-                Array [
-                  Object {
-                    "foo": "bar",
-                  },
-                ]
-              }
-              path="/foo"
-            />
-          </DemoPage>
-        </Route>
-      </withRouter(DemoPage)>
-    </Route>
-  </Router>
-</MemoryRouter>
+      }
+      match={
+        Object {
+          "isExact": true,
+          "params": Object {},
+          "path": "/foo",
+          "url": "/foo",
+        }
+      }
+    >
+      <mock-tree-view-menu
+        data={
+          Array [
+            Object {
+              "foo": "bar",
+            },
+          ]
+        }
+        path="/foo"
+      />
+    </DemoPage>
+  </Route>
+</withRouter(DemoPage)>
 `;
