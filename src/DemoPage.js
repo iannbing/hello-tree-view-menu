@@ -13,9 +13,14 @@ class DemoPage extends Component {
 
   state = { path: '' };
 
+  navigate = path => {
+    const { history } = this.props;
+    history.push(path);
+  };
+
   render() {
     const { path } = this.state;
-    return <TreeViewMenu data={data} path={path} />;
+    return <TreeViewMenu data={data} path={path} navigate={this.navigate} />;
   }
 }
 
