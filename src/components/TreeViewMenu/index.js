@@ -4,37 +4,39 @@ import { ListGroup } from 'reactstrap';
 import ListGroupItem from './ListGroupItem';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
+const cleanPath = path => path.replace(/(^\/)(.*)(\/$)/g, (all, g1, g2) => g2);
 
-const walk = ({ data, activeNode, parent = '', level = 0 }) =>
+const walk = ({ data, path = '', parent = '', level = 0 }) =>
   Object.entries(data)
-    .sort((a, b) => a[1].index - b[1].index) // ensure the order is consistent
+    .sort((a, b) => a[1].index - b[1].index)
     .reduce((all, [key, node]) => {
-      const { label, onClick, nodes } = node;
+      const { label, onClick, nodes, url } = node;
       const hasSubItems = nodes && nodes.length > 1;
+      const isActive = cleanPath(path) === cleanPath(url);
       const currentNode = [parent, key].filter(x => x).join('/');
       return [
         ...all,
         <ListGroupItem
           onClick={onClick || defaultOnClick}
-          active={activeNode === currentNode}
+          active={isActive}
           hasSubItems={hasSubItems}
           level={level}
-          key={currentNode}
+          key={currentNode} // node is unique
         >
           {label}
         </ListGroupItem>,
         nodes &&
           walk({
             data: nodes,
-            activeNode,
+            path,
             parent: currentNode,
             level: level + 1
           })
       ].filter(x => x);
     }, []);
 
-const TreeViewMenu = ({ data, activeNode }) => (
-  <ListGroup>{walk({ data, activeNode })}</ListGroup>
+const TreeViewMenu = ({ data, path }) => (
+  <ListGroup>{walk({ data, path })}</ListGroup>
 );
 
 export default TreeViewMenu;

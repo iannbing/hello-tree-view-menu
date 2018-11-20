@@ -19,21 +19,25 @@ To generate a `TreeViewMenu`, you need to provide a data tree in the following f
   releasenotes: {            // node name
     label: 'Release Notes',  // label of this menu item
     onClick: () => ({}),     // define behavior
+    url: '/releasenotes/',   // url
     index: 0,                // decide the order in the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
         onClick: () => ({}),
+        url:'/releasenotes/desktop-modeler/',
         index: 0,
         nodes: {
           7: {
             label: '7',
             onClick: () => ({}),
+            url: '/releasenotes/desktop-modeler/7',
             index: 0,
             nodes: {
               '7.0': {
                 label: '7.0',
                 onClick: () => ({}),
+                url: '/releasenotes/desktop-modeler/7.0',
                 index: 0
               }
             }
@@ -45,6 +49,7 @@ To generate a `TreeViewMenu`, you need to provide a data tree in the following f
   atd: {
     label: 'ATS Guide',
     onClick: () => ({}),
+    url: '/ats/',
     index: 1  // i.e. ATS Guide should be right after Release Notes
   }
 }
