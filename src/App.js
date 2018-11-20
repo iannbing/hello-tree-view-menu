@@ -4,7 +4,9 @@ import createHistory from 'history/createBrowserHistory';
 
 import './App.css';
 
-export const history = createHistory({ basename: '' });
+const BASE_NAV_URL = process.env.REACT_APP_NAVIGATION_PATH || '';
+
+export const history = createHistory({ basename: BASE_NAV_URL });
 
 const DemoPage = lazy(() => import('./DemoPage'));
 

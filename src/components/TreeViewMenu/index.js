@@ -28,7 +28,9 @@ class TreeViewMenu extends Component {
         <ListGroupItem onClick={navigate('/releasenotes')} active>
           Release Notes
         </ListGroupItem>
-        <ListGroupItem level={1}>Developer Portal</ListGroupItem>
+        <ListGroupItem hasSubItems level={1} isOpen>
+          Developer Portal
+        </ListGroupItem>
       </ListGroup>
     );
   }
