@@ -1,51 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ListGroup } from 'reactstrap';
 
 import ListGroupItem from './ListGroupItem';
 
-const defaultNavigate = path => () => {
-  document.location.href = `${process.env.REACT_APP_BASE_URL}${path}`;
-};
+const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
-class TreeViewMenu extends Component {
-  static defaultProps = {
-    data: null,
-    path: '',
-    navigate: defaultNavigate
-  };
-
-  componentDidMount() {
-    const { data } = this.props;
-
-    console.log(data);
-  }
-
-  render() {
-    const { navigate } = this.props;
-
-    return (
-      <ListGroup>
+const walk = ({ data, activeNode, parent = '', level = 0 }) =>
+  Object.entries(data)
+    .sort((a, b) => a[1].index - b[1].index) // ensure the order is consistent
+    .reduce((all, [key, node]) => {
+      const { label, onClick, nodes } = node;
+      const hasSubItems = nodes && nodes.length > 1;
+      const currentNode = [parent, key].filter(x => x).join('/');
+      return [
+        ...all,
         <ListGroupItem
-          onClick={() => navigate('/releasenotes')}
-          active
-          hasSubItems
+          onClick={onClick || defaultOnClick}
+          active={activeNode === currentNode}
+          hasSubItems={hasSubItems}
+          level={level}
+          key={currentNode}
         >
-          Release Notes
-        </ListGroupItem>
-        <ListGroupItem
-          hasSubItems
-          level={1}
-          isOpen
-          onClick={() => navigate('/developerportal')}
-        >
-          Developer Portal
-        </ListGroupItem>
-        <ListGroupItem hasSubItems level={2}>
-          Developer Portal
-        </ListGroupItem>
-      </ListGroup>
-    );
-  }
-}
+          {label}
+        </ListGroupItem>,
+        nodes &&
+          walk({
+            data: nodes,
+            activeNode,
+            parent: currentNode,
+            level: level + 1
+          })
+      ].filter(x => x);
+    }, []);
+
+const TreeViewMenu = ({ data, activeNode }) => (
+  <ListGroup>{walk({ data, activeNode })}</ListGroup>
+);
 
 export default TreeViewMenu;

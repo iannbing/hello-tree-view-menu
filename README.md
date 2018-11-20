@@ -10,30 +10,43 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 An opinionated eslint config for this project [eslint-config-react-airbnb-prettier](https://github.com/iannbing/eslint-config-react-airbnb-prettier).
 
-## Dehydrate data
+## API design
 
-Ideal data format is designed in the following format
+To generate a `TreeViewMenu`, you need to provide a data tree in the following format:
 
 ```javascript
-// an Array of sapces
-// key: tree node in the menu
-[{
-    'releasenotes' : {
-        title: 'Release Notes',
-        url: '/releasenotes/',
-        'desktop-modeler': {
-            title: 'Desktop Modeler',
-            url: '/releasenotes/desktop-modeler/',
-            7: {
-                title: '7',
-                url: '/releasenotes/desktop-modeler/7',
-                '7.0': {
-                    title: '7.0',
-                    url: '/releasenotes/desktop-modeler/7.0'
-                }
+{
+  releasenotes: {            // node name
+    label: 'Release Notes',  // label of this menu item
+    onClick: () => ({}),     // define behavior
+    index: 0,                // decide the order in the same level
+    nodes: {
+      'desktop-modeler': {
+        label: 'Desktop Modeler',
+        onClick: () => ({}),
+        index: 0,
+        nodes: {
+          7: {
+            label: '7',
+            onClick: () => ({}),
+            index: 0,
+            nodes: {
+              '7.0': {
+                label: '7.0',
+                onClick: () => ({}),
+                index: 0
+              }
             }
+          }
         }
+      }
     }
-},...]
+  },
+  atd: {
+    label: 'ATS Guide',
+    onClick: () => ({}),
+    index: 1  // i.e. ATS Guide should be right after Release Notes
+  }
+}
 
 ```
