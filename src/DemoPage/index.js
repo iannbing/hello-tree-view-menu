@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
 
-import TreeViewMenu from './components/TreeViewMenu';
-import data from './data/spaces.json';
+import TreeViewMenu from '../components/TreeViewMenu';
+import data from '../data/spaces.json';
+import { transpose } from './dataProcessing';
 
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
@@ -20,7 +21,8 @@ class DemoPage extends Component {
 
   render() {
     const { path } = this.state;
-    return <TreeViewMenu data={data} path={path} navigate={this.navigate} />;
+    const processedData = transpose({ data, navigate: this.navigate });
+    return <TreeViewMenu data={processedData} path={path} />;
   }
 }
 

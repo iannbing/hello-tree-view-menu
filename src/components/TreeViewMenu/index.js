@@ -14,17 +14,20 @@ const walk = ({ data, path = '', parent = '', level = 0 }) =>
       const hasSubItems = nodes && nodes.length > 1;
       const isActive = cleanPath(path) === cleanPath(url);
       const currentNode = [parent, key].filter(x => x).join('/');
-      return [
-        ...all,
+      const currentItem = (
         <ListGroupItem
           onClick={onClick || defaultOnClick}
           active={isActive}
           hasSubItems={hasSubItems}
           level={level}
-          key={currentNode} // node is unique
+          key={currentNode}
         >
           {label}
-        </ListGroupItem>,
+        </ListGroupItem>
+      );
+      return [
+        ...all,
+        currentItem,
         nodes &&
           walk({
             data: nodes,
