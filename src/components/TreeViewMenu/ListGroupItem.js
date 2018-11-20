@@ -3,18 +3,19 @@ import styled from 'react-emotion';
 import { ListGroupItem as DefaultListGroupItem } from 'reactstrap';
 
 const DEFAULT_PADDING = 1.25;
-const LEVEL_SPACE = 1;
+const LEVEL_SPACE = 1.25;
+const ICON_SIZE = 1;
 
-const ToggleIcon = styled('div')({
+const ToggleIcon = styled('div')(({ level = 0 }) => ({
   position: 'absolute',
-  left: 20,
-  width: 10,
-  height: 10
-});
+  left: `${ICON_SIZE + level * LEVEL_SPACE}rem`,
+  width: `${ICON_SIZE}rem`,
+  height: `${ICON_SIZE}rem`
+}));
 
 const ListGroupItemWithPadding = styled(DefaultListGroupItem)(
   ({ level = 0 }) => ({
-    paddingLeft: `${DEFAULT_PADDING + level * LEVEL_SPACE}rem`
+    paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`
   })
 );
 
@@ -27,7 +28,9 @@ const ListGroupItem = ({
 }) => (
   <>
     <ListGroupItemWithPadding level={hasSubItems ? level : 0} {...props}>
-      {hasSubItems && <ToggleIcon>{isOpen ? '-' : '+'}</ToggleIcon>}
+      {hasSubItems && (
+        <ToggleIcon level={level}>{isOpen ? '-' : '+'}</ToggleIcon>
+      )}
       {children}
     </ListGroupItemWithPadding>
   </>
