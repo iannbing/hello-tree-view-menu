@@ -19,44 +19,54 @@ const createObjFromKeys = ({ obj = {}, keys, value }) => {
   return obj;
 };
 
-const transpose = ({ data, navigate }) => {
-  const transposed = data.reduce((allSpaces, currentSpace, spaceIndex) => {
-    const { content } = currentSpace;
-    const currentSpacePages = content.pages.reduce(
-      (allPages, currentPage, pageIndex) => {
-        const {
-          t, // title
-          // c, // category
-          // i, // identifier
-          u, // url
-          // d, // directory
-          m, // is space
-          p // parent page
-        } = currentPage;
-        const path = u.split('/').filter(x => x);
+const transposeSpace = ({ space, navigate, spaceIndex }) => {
+  const { content } = space;
+  return content.pages.reduce((allPages, currentPage, pageIndex) => {
+    const {
+      t, // title
+      // c, // category
+      // i, // identifier
+      u, // url
+      // d, // directory
+      m, // is space
+      p // parent page
+    } = currentPage;
+    const path = u.split('/').filter(x => x);
 
-        // if it has a parent page, insert it to have complete nodes
-        if (p) path.splice(path.length - 1, 0, p);
+    // if it has a parent page, insert it to have complete nodes
+    if (p) path.splice(path.length - 1, 0, p);
 
-        const newObj = createObjFromKeys({
-          keys: path,
-          value: {
-            label: t,
-            onClick: () => navigate(u),
-            url: u,
-            index: m ? spaceIndex : pageIndex
-          }
-        });
-        return merge(newObj, allPages);
-      },
-      {}
-    );
-    return {
-      ...allSpaces,
-      ...currentSpacePages
-    };
+    const newObj = createObjFromKeys({
+      keys: path,
+      value: {
+        label: t,
+        onClick: () => navigate(u),
+        url: u,
+        index: m ? spaceIndex : pageIndex
+      }
+    });
+    return merge(newObj, allPages);
   }, {});
-  return transposed;
+};
+
+const transpose = ({ data, navigate, index }) => {
+  if (Array.isArray(data))
+    return data.reduce((allSpaces, currentSpace, spaceIndex) => {
+      const currentSpacePages = transposeSpace({
+        space: currentSpace,
+        spaceIndex,
+        navigate
+      });
+      return {
+        ...allSpaces,
+        ...currentSpacePages
+      };
+    }, {});
+  return transposeSpace({
+    space: data,
+    spaceIndex: index,
+    navigate
+  });
 };
 
 export default transpose;
