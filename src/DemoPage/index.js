@@ -4,7 +4,7 @@ import { get } from 'lodash';
 
 import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
-import { transpose } from './dataProcessing';
+import transpose from './transpose';
 
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {

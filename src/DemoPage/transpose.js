@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import { merge } from 'lodash';
 
 const createObjFromKeys = ({ obj = {}, keys, value }) => {
@@ -21,7 +19,7 @@ const createObjFromKeys = ({ obj = {}, keys, value }) => {
   return obj;
 };
 
-export const transpose = ({ data, navigate }) => {
+const transpose = ({ data, navigate }) => {
   const transposed = data.reduce((allSpaces, currentSpace, spaceIndex) => {
     const { content } = currentSpace;
     const currentSpacePages = content.pages.reduce(
@@ -60,3 +58,5 @@ export const transpose = ({ data, navigate }) => {
   }, {});
   return transposed;
 };
+
+export default transpose;
