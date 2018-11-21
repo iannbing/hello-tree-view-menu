@@ -6,6 +6,8 @@ import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
 import transpose from './transpose';
 
+const BASE_NAV_URL = process.env.REACT_APP_NAVIGATION_PATH || '';
+
 const cleanPath = path =>
   path
     .split('/')
@@ -32,7 +34,8 @@ class DemoPage extends Component {
 
   navigate = path => {
     const { history } = this.props;
-    history.push(path);
+    const trimmedPath = cleanPath(path);
+    history.push(`${BASE_NAV_URL}${trimmedPath}`);
   };
 
   render() {
