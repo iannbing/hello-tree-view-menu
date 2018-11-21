@@ -8,7 +8,8 @@ import transpose from './transpose';
 
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
-    const path = get(props, 'match.url');
+    const path = get(props, 'location.pathname');
+
     return { path };
   }
 

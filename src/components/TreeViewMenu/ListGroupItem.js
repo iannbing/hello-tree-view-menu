@@ -15,7 +15,8 @@ const ToggleIcon = styled('div')(({ level = 0 }) => ({
 
 const ListGroupItemWithPadding = styled(DefaultListGroupItem)(
   ({ level = 0 }) => ({
-    paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`
+    paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`,
+    cursor: 'pointer'
   })
 );
 
