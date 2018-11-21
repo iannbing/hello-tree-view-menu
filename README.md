@@ -83,3 +83,7 @@ TreeNode
 | key     | a unique key that represent this node                                                   | string     | -              |
 | index   | a number that defines the order of the nodes in the same level                          | number     | -              |
 | nodes   | \[optional\] a node without this property means that it is the last child of its branch | TreeNode[] | -              |
+
+## To-Do
+
+- Make each node expandable: Currently the whole tree is expanded by default. Next step is to enable user to toggle per node.
