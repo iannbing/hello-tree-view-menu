@@ -19,7 +19,16 @@ class DemoPage extends Component {
     return { path };
   }
 
-  state = { path: '' };
+  state = { path: '', treeData: null };
+
+  componentDidMount() {
+    this.processData();
+  }
+
+  processData = () => {
+    const treeData = transpose({ data, navigate: this.navigate });
+    this.setState({ treeData });
+  };
 
   navigate = path => {
     const { history } = this.props;
@@ -27,10 +36,9 @@ class DemoPage extends Component {
   };
 
   render() {
-    const { path } = this.state;
+    const { path, treeData } = this.state;
     const activeKey = cleanPath(path);
-    const processedData = transpose({ data, navigate: this.navigate });
-    return <TreeViewMenu data={processedData} activeKey={activeKey} />;
+    return treeData && <TreeViewMenu data={treeData} activeKey={activeKey} />;
   }
 }
 
