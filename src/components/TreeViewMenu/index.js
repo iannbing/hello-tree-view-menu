@@ -48,7 +48,9 @@ class TreeViewMenu extends React.Component {
           onClick,
           node: currentNode
         });
-        const isMatching = searchTerm && label.includes(searchTerm);
+        const isMatching =
+          searchTerm &&
+          label.toLowerCase().includes(searchTerm.trim().toLowerCase());
         const currentItem = (!searchTerm || isMatching) && (
           <ListGroupItem
             hasSubItems={hasSubItems}
