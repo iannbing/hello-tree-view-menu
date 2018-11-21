@@ -22,7 +22,7 @@ describe('DemoPage', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find(DemoPage)).toMatchSnapshot();
+    expect(wrapper.find('DemoPage')).toMatchSnapshot();
   });
 
   it('should provide correct props for TreeViewMenu', () => {
@@ -36,5 +36,6 @@ describe('DemoPage', () => {
     expect(wrapper.find('mock-tree-view-menu').prop('activeKey')).toEqual(
       expectedActiveKey
     );
+    expect(wrapper.find('mock-tree-view-menu').prop('searchTerm')).toEqual('');
   });
 });

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DemoPage should render correctly 1`] = `
-<withRouter(DemoPage)
+<DemoPage
   history={
     Object {
       "action": "POP",
@@ -49,66 +49,54 @@ exports[`DemoPage should render correctly 1`] = `
     }
   }
 >
-  <Route>
-    <DemoPage
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "canGo": [Function],
-          "createHref": [Function],
-          "entries": Array [
-            Object {
-              "hash": "",
-              "key": "path",
-              "pathname": "/foo",
-              "search": "",
-            },
-          ],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "index": 0,
-          "length": 1,
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "key": "path",
-            "pathname": "/foo",
-            "search": "",
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
-      }
-      location={
-        Object {
-          "hash": "",
-          "key": "path",
-          "pathname": "/foo",
-          "search": "",
-        }
-      }
-      match={
-        Object {
-          "isExact": true,
-          "params": Object {},
-          "path": "/foo",
-          "url": "/foo",
-        }
-      }
+  <InputGroup
+    tag="div"
+  >
+    <div
+      className="input-group"
     >
-      <mock-tree-view-menu
-        activeKey="foo"
-        data={
-          Array [
-            Object {
-              "foo": "bar",
-            },
-          ]
-        }
-      />
-    </DemoPage>
-  </Route>
-</withRouter(DemoPage)>
+      <InputGroupAddon
+        addonType="prepend"
+        tag="div"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <InputGroupText
+            tag="span"
+          >
+            <span
+              className="input-group-text"
+            >
+              Search
+            </span>
+          </InputGroupText>
+        </div>
+      </InputGroupAddon>
+      <Input
+        onChange={[Function]}
+        type="text"
+        value=""
+      >
+        <input
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </Input>
+    </div>
+  </InputGroup>
+  <mock-tree-view-menu
+    activeKey="foo"
+    data={
+      Array [
+        Object {
+          "foo": "bar",
+        },
+      ]
+    }
+    searchTerm=""
+  />
+</DemoPage>
 `;
