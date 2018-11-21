@@ -3,51 +3,5 @@
 exports[`TreeViewMenu should render correctly 1`] = `
 <ListGroup
   tag="ul"
->
-  <ListGroupItem
-    active={false}
-    hasSubItems={true}
-    key="releasenotes"
-    level={0}
-    onClick={[Function]}
-  >
-    Release Notes
-  </ListGroupItem>
-  <ListGroupItem
-    active={false}
-    hasSubItems={true}
-    key="releasenotes/desktop-modeler"
-    level={1}
-    onClick={[Function]}
-  >
-    Desktop Modeler
-  </ListGroupItem>
-  <ListGroupItem
-    active={true}
-    hasSubItems={true}
-    key="releasenotes/desktop-modeler/7"
-    level={2}
-    onClick={[Function]}
-  >
-    7
-  </ListGroupItem>
-  <ListGroupItem
-    active={false}
-    hasSubItems={false}
-    key="releasenotes/desktop-modeler/7/7.0"
-    level={3}
-    onClick={[Function]}
-  >
-    7.0
-  </ListGroupItem>
-  <ListGroupItem
-    active={false}
-    hasSubItems={false}
-    key="atd"
-    level={0}
-    onClick={[Function]}
-  >
-    ATS Guide
-  </ListGroupItem>
-</ListGroup>
+/>
 `;

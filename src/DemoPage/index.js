@@ -6,6 +6,12 @@ import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
 import transpose from './transpose';
 
+const cleanPath = path =>
+  path
+    .split('/')
+    .filter(x => x)
+    .join('/');
+
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
     const path = get(props, 'location.pathname');
@@ -22,8 +28,9 @@ class DemoPage extends Component {
 
   render() {
     const { path } = this.state;
+    const activeKey = cleanPath(path);
     const processedData = transpose({ data, navigate: this.navigate });
-    return <TreeViewMenu data={processedData} path={path} />;
+    return <TreeViewMenu data={processedData} activeKey={activeKey} />;
   }
 }
 

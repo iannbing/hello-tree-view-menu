@@ -19,6 +19,12 @@ const createObjFromKeys = ({ obj = {}, keys, value }) => {
   return obj;
 };
 
+const cleanPath = path =>
+  path
+    .split('/')
+    .filter(x => x)
+    .join('/');
+
 const transposeSpace = ({ space, navigate, spaceIndex }) => {
   const { content } = space;
   return content.pages.reduce((allPages, currentPage, pageIndex) => {
@@ -41,7 +47,7 @@ const transposeSpace = ({ space, navigate, spaceIndex }) => {
       value: {
         label: t,
         onClick: () => navigate(u),
-        url: u,
+        key: cleanPath(u),
         index: m ? spaceIndex : pageIndex
       }
     });

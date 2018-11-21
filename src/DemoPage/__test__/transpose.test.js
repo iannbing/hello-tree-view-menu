@@ -9,25 +9,25 @@ describe('transpose', () => {
     releasenotes: {
       label: 'Release Notes',
       onClick: () => ({}),
-      url: '/releasenotes/',
+      key: 'releasenotes',
       index: 0,
       nodes: {
         'desktop-modeler': {
           label: 'Desktop Modeler',
           onClick: () => ({}),
-          url: '/releasenotes/desktop-modeler/',
+          key: 'releasenotes/desktop-modeler',
           index: 1,
           nodes: {
             7: {
               label: '7',
               onClick: () => ({}),
-              url: '/releasenotes/desktop-modeler/7',
+              key: 'releasenotes/desktop-modeler/7',
               index: 2,
               nodes: {
                 '7.0': {
                   label: '7.0',
                   onClick: () => ({}),
-                  url: '/releasenotes/desktop-modeler/7.0',
+                  key: 'releasenotes/desktop-modeler/7.0',
                   index: 3
                 }
               }
@@ -46,7 +46,11 @@ describe('transpose', () => {
     expect(transposedValue).toEqual(expectedValue);
   });
   it('should transpose a single space', () => {
-    const transposed = transpose({ data: releasenotes, navigate: () => ({}) });
+    const transposed = transpose({
+      data: releasenotes,
+      navigate: () => ({}),
+      index: 0
+    });
 
     const transposedValue = formatValue(transposed);
     const expectedValue = formatValue(expected);

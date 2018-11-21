@@ -99,6 +99,7 @@ exports[`DemoPage should render correctly 1`] = `
       }
     >
       <mock-tree-view-menu
+        activeKey="foo"
         data={
           Array [
             Object {
@@ -106,7 +107,6 @@ exports[`DemoPage should render correctly 1`] = `
             },
           ]
         }
-        path="/foo"
       />
     </DemoPage>
   </Route>
