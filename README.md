@@ -1,6 +1,6 @@
 # Introduction
 
-This is a MVP for TreeViewMenu React component.
+This is a MVP for TreeViewMenu React component. See [Demo](https://iannbing.github.io/hello-tree-view-menu).
 
 ## Usage
 
