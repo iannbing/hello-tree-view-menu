@@ -2,14 +2,6 @@
 
 This is a MVP for TreeViewMenu React component.
 
-## CRA 2
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) version 2.
-
-## Code conventions
-
-An opinionated eslint config for this project [eslint-config-react-airbnb-prettier](https://github.com/iannbing/eslint-config-react-airbnb-prettier).
-
 ## Usage
 
 To generate a `TreeViewMenu`, you need to provide data in the following structure. You can provide one tree object or an array of multiple trees.
@@ -87,3 +79,18 @@ TreeNode
 ## To-Do
 
 - Make each node expandable: Currently the whole tree is expanded by default. Next step is to enable user to toggle per node.
+
+## Dependencies
+
+`TreeViewMenu` is built with
+
+- [reactstrap](https://reactstrap.github.io/)
+- [emotion](https://emotion.sh/)
+
+This Demo application is built with [Create React App](https://github.com/facebook/create-react-app) version 2. [react-app-rewired](https://github.com/timarney/react-app-rewired) and [customize-cra](https://github.com/arackaf/customize-cra) are used in order to configure `babel` without ejection. [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) is used for only importing used modules to reduce bundle size, this allows using `Lodash` when you only want to use light-weight functions like `get` and `merge`.
+
+NOTE: configure `REACT_APP_BUNDLE_VISUALIZE=true` in `.env` and then run `yarn build` to see the actual bundle size.
+
+## Code conventions
+
+- [eslint-config-react-airbnb-prettier](https://github.com/iannbing/eslint-config-react-airbnb-prettier).
