@@ -4,20 +4,21 @@ This is a MVP for TreeViewMenu React component. See [Demo](https://iannbing.gith
 
 ## Usage
 
-To generate a `TreeViewMenu`, you need to provide data in the following structure. You can provide one tree object or an array of multiple trees.
+To generate a `TreeViewMenu`, you need to provide data in the following structure.
 
 ```javascript
 const treeData = {
-  releasenotes: {            // node name
-    label: 'Release Notes',  // label of this menu item
-    onClick: () => ({}),     // defines the behavior; it will do console.warn if not specified
-    key: 'releasenotes',     // use url as unique key for the node, removing leading and trailing slashes
-    index: 0,                // decide the order in the same level
+  releasenotes: {
+    // node name
+    label: 'Release Notes', // label of this menu item
+    onClick: () => ({}), // defines the behavior; it will do console.warn if not specified
+    key: 'releasenotes', // use url as unique key for the node, removing leading and trailing slashes
+    index: 0, // decide the order in the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
         onClick: () => ({}),
-        key:'releasenotes/desktop-modeler',
+        key: 'releasenotes/desktop-modeler',
         index: 0,
         nodes: {
           7: {
@@ -29,7 +30,7 @@ const treeData = {
               '7.0': {
                 label: '7.0',
                 onClick: () => ({}),
-                key: 'releasenotes/desktop-modeler/7.0',  // note that the URL is not necessarily reflecting the node path
+                key: 'releasenotes/desktop-modeler/7.0', // note that the URL is not necessarily reflecting the node path
                 index: 0
               }
             }
@@ -42,29 +43,30 @@ const treeData = {
     label: 'ATS Guide',
     onClick: () => ({}),
     key: 'ats',
-    index: 1  // i.e. ATS Guide should be right after Release Notes
+    index: 1 // i.e. ATS Guide should be right after Release Notes
   }
 };
-
-// OR
-const treeData = [tree1, tree2, ...];
-
 ```
 
 And then import `TreeViewMenu` and use it.
 
 ```jsx
-<TreeViewMenu data={treeData} activeKey="releasenotes/desktop-modeler/7.0" />
+<TreeViewMenu
+  data={treeData}
+  activeKey="releasenotes/desktop-modeler/7.0"
+  searchTerm="7"
+/>
 ```
 
 ## API
 
 TreeViewMenu
 
-| props     | description                                                                                                                       | type                   | default |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------- |
-| data      | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | TreeNode \| TreeNode[] | -       |
-| activeKey | the node matching this key will be highlighted                                                                                    | string                 | ''      |
+| props      | description                                                                                                                       | type     | default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| data       | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | TreeNode | -       |
+| activeKey  | the node matching this key will be highlighted                                                                                    | string   | ''      |
+| searchTerm | Only shows the node that contains the text in their `label`                                                                       | string   | ''      |
 
 TreeNode
 
