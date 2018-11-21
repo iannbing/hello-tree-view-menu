@@ -62,11 +62,11 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props      | description                                                                                                                       | type     | default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| data       | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | TreeNode | -       |
-| activeKey  | the node matching this key will be highlighted                                                                                    | string   | ''      |
-| searchTerm | Only shows the node that contains the text in their `label`                                                                       | string   | ''      |
+| props     | description                                                                                                                       | type     | default |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| data      | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | TreeNode | -       |
+| activeKey | the node matching this key will be highlighted                                                                                    | string   | ''      |
+| search    | enable `search` on the tree nodes' `label`                                                                                        | boolean  | false   |
 
 TreeNode
 

@@ -64,4 +64,15 @@ describe('TreeViewMenu', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+  it('should render search box', () => {
+    const wrapper = shallow(
+      <TreeViewMenu
+        data={mockData}
+        activeKey="releasenotes/desktop-modeler/7"
+        search
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

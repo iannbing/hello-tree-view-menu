@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import { get } from 'lodash';
 
 import TreeViewMenu from '../components/TreeViewMenu';
@@ -20,7 +19,7 @@ class DemoPage extends Component {
     return { path };
   }
 
-  state = { path: '', treeData: null, searchTerm: '' };
+  state = { path: '', treeData: null };
 
   componentDidMount() {
     this.processData();
@@ -36,25 +35,13 @@ class DemoPage extends Component {
     history.push(path);
   };
 
-  onChange = e => {
-    this.setState({ searchTerm: e.target.value });
-  };
-
   render() {
-    const { path, treeData, searchTerm } = this.state;
+    const { path, treeData } = this.state;
     const activeKey = cleanPath(path);
     return (
       <>
-        <InputGroup>
-          <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
-          <Input value={searchTerm} onChange={this.onChange} />
-        </InputGroup>
         {treeData && (
-          <TreeViewMenu
-            data={treeData}
-            activeKey={activeKey}
-            searchTerm={searchTerm}
-          />
+          <TreeViewMenu data={treeData} activeKey={activeKey} search />
         )}
       </>
     );

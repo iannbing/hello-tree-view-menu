@@ -1,5 +1,6 @@
 import React from 'react';
-import { ListGroup } from 'reactstrap';
+// import { debounce } from 'lodash';
+import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import ListGroupItem from './ListGroupItem';
 
@@ -9,10 +10,14 @@ class TreeViewMenu extends React.Component {
   static defaultProps = {
     data: null,
     activeKey: '',
-    searchTerm: ''
+    search: false
   };
 
-  state = { openNodes: [] };
+  state = { openNodes: [], searchTerm: '' };
+
+  onChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
 
   toggleNode = node => {
     const { openNodes } = this.state;
@@ -32,8 +37,8 @@ class TreeViewMenu extends React.Component {
   };
 
   walk = ({ data, parent = '', level = 0 }) => {
-    const { activeKey, searchTerm } = this.props;
-    const { openNodes } = this.state;
+    const { activeKey } = this.props;
+    const { openNodes, searchTerm } = this.state;
 
     return Object.entries(data)
       .sort((a, b) => a[1].index - b[1].index)
@@ -76,10 +81,20 @@ class TreeViewMenu extends React.Component {
   };
 
   render() {
-    const { data, activeKey } = this.props;
+    const { data, activeKey, search } = this.props;
     const { openNodes } = this.state;
     return (
-      data && <ListGroup>{this.walk({ data, activeKey, openNodes })}</ListGroup>
+      <>
+        {search && (
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
+            <Input onChange={this.onChange} />
+          </InputGroup>
+        )}
+        {data && (
+          <ListGroup>{this.walk({ data, activeKey, openNodes })}</ListGroup>
+        )}
+      </>
     );
   }
 }

@@ -1,55 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TreeViewMenu should only render the matching results that contains "7" 1`] = `
-<ListGroup
-  tag="ul"
->
-  <ListGroupItem
-    active={true}
-    hasSubItems={true}
-    isOpen="7"
-    key="releasenotes/desktop-modeler/7"
-    level={2}
-    onClick={[Function]}
+<Fragment>
+  <ListGroup
+    tag="ul"
   >
-    7
-  </ListGroupItem>
-  <ListGroupItem
-    active={false}
-    hasSubItems={false}
-    isOpen="7"
-    key="releasenotes/desktop-modeler/7/7.0"
-    level={3}
-    onClick={[Function]}
+    <ListGroupItem
+      active={false}
+      hasSubItems={true}
+      isOpen=""
+      key="releasenotes"
+      level={0}
+      onClick={[Function]}
+    >
+      Release Notes
+    </ListGroupItem>
+    <ListGroupItem
+      active={false}
+      hasSubItems={false}
+      isOpen=""
+      key="atd"
+      level={0}
+      onClick={[Function]}
+    >
+      ATS Guide
+    </ListGroupItem>
+  </ListGroup>
+</Fragment>
+`;
+
+exports[`TreeViewMenu should render search box 1`] = `
+<Fragment>
+  <InputGroup
+    tag="div"
   >
-    7.0
-  </ListGroupItem>
-</ListGroup>
+    <InputGroupAddon
+      addonType="prepend"
+      tag="div"
+    >
+      Search
+    </InputGroupAddon>
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </InputGroup>
+  <ListGroup
+    tag="ul"
+  >
+    <ListGroupItem
+      active={false}
+      hasSubItems={true}
+      isOpen=""
+      key="releasenotes"
+      level={0}
+      onClick={[Function]}
+    >
+      Release Notes
+    </ListGroupItem>
+    <ListGroupItem
+      active={false}
+      hasSubItems={false}
+      isOpen=""
+      key="atd"
+      level={0}
+      onClick={[Function]}
+    >
+      ATS Guide
+    </ListGroupItem>
+  </ListGroup>
+</Fragment>
 `;
 
 exports[`TreeViewMenu should render the roots only 1`] = `
-<ListGroup
-  tag="ul"
->
-  <ListGroupItem
-    active={false}
-    hasSubItems={true}
-    isOpen=""
-    key="releasenotes"
-    level={0}
-    onClick={[Function]}
+<Fragment>
+  <ListGroup
+    tag="ul"
   >
-    Release Notes
-  </ListGroupItem>
-  <ListGroupItem
-    active={false}
-    hasSubItems={false}
-    isOpen=""
-    key="atd"
-    level={0}
-    onClick={[Function]}
-  >
-    ATS Guide
-  </ListGroupItem>
-</ListGroup>
+    <ListGroupItem
+      active={false}
+      hasSubItems={true}
+      isOpen=""
+      key="releasenotes"
+      level={0}
+      onClick={[Function]}
+    >
+      Release Notes
+    </ListGroupItem>
+    <ListGroupItem
+      active={false}
+      hasSubItems={false}
+      isOpen=""
+      key="atd"
+      level={0}
+      onClick={[Function]}
+    >
+      ATS Guide
+    </ListGroupItem>
+  </ListGroup>
+</Fragment>
 `;

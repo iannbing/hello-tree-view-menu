@@ -49,44 +49,6 @@ exports[`DemoPage should render correctly 1`] = `
     }
   }
 >
-  <InputGroup
-    tag="div"
-  >
-    <div
-      className="input-group"
-    >
-      <InputGroupAddon
-        addonType="prepend"
-        tag="div"
-      >
-        <div
-          className="input-group-prepend"
-        >
-          <InputGroupText
-            tag="span"
-          >
-            <span
-              className="input-group-text"
-            >
-              Search
-            </span>
-          </InputGroupText>
-        </div>
-      </InputGroupAddon>
-      <Input
-        onChange={[Function]}
-        type="text"
-        value=""
-      >
-        <input
-          className="form-control"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </Input>
-    </div>
-  </InputGroup>
   <mock-tree-view-menu
     activeKey="foo"
     data={
@@ -96,7 +58,7 @@ exports[`DemoPage should render correctly 1`] = `
         },
       ]
     }
-    searchTerm=""
+    search={true}
   />
 </DemoPage>
 `;

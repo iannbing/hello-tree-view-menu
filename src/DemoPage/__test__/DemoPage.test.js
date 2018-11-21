@@ -36,6 +36,6 @@ describe('DemoPage', () => {
     expect(wrapper.find('mock-tree-view-menu').prop('activeKey')).toEqual(
       expectedActiveKey
     );
-    expect(wrapper.find('mock-tree-view-menu').prop('searchTerm')).toEqual('');
+    expect(wrapper.find('mock-tree-view-menu').prop('search')).toEqual(true);
   });
 });
