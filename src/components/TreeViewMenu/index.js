@@ -5,41 +5,72 @@ import ListGroupItem from './ListGroupItem';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
-const walk = ({ data, activeKey = '', parent = '', level = 0 }) =>
-  Object.entries(data)
-    .sort((a, b) => a[1].index - b[1].index)
-    .reduce((all, [nodeName, node]) => {
-      const { label, onClick, nodes, key } = node;
-      const hasSubItems = nodes !== undefined && nodes !== null;
-      if (!key) return all;
-      const isActive = activeKey === key;
-      const currentNode = [parent, nodeName].filter(x => x).join('/');
-      const currentItem = (
-        <ListGroupItem
-          onClick={onClick || defaultOnClick}
-          active={isActive}
-          hasSubItems={hasSubItems}
-          level={level}
-          key={currentNode}
-        >
-          {label}
-        </ListGroupItem>
-      );
-      return [
-        ...all,
-        currentItem,
-        nodes &&
-          walk({
-            data: nodes,
-            activeKey,
-            parent: currentNode,
-            level: level + 1
-          })
-      ].filter(x => x);
-    }, []);
+class TreeViewMenu extends React.Component {
+  state = { openNodes: [] };
 
-const TreeViewMenu = ({ data, activeKey }) => (
-  <ListGroup>{walk({ data, activeKey })}</ListGroup>
-);
+  toggleNode = node => {
+    const { openNodes } = this.state;
+    if (openNodes.includes(node)) {
+      this.setState({
+        openNodes: openNodes.filter(openNode => openNode !== node)
+      });
+    } else {
+      this.setState({ openNodes: [...openNodes, node] });
+    }
+  };
+
+  getOnClickFunction = ({ onClick, node }) => () => {
+    const onClickFn = onClick || defaultOnClick;
+    onClickFn();
+    this.toggleNode(node);
+  };
+
+  walk = ({ data, activeKey = '', parent = '', level = 0, openNodes }) =>
+    Object.entries(data)
+      .sort((a, b) => a[1].index - b[1].index)
+      .reduce((all, [nodeName, node]) => {
+        const { label, onClick, nodes, key } = node;
+        const hasSubItems = nodes !== undefined && nodes !== null;
+        if (!key) return all;
+        const isActive = activeKey === key;
+        const currentNode = [parent, nodeName].filter(x => x).join('/');
+        const isOpen = openNodes.includes(currentNode);
+        const onClickFunction = this.getOnClickFunction({
+          onClick,
+          node: currentNode
+        });
+        const currentItem = (
+          <ListGroupItem
+            onClick={onClickFunction}
+            active={isActive}
+            hasSubItems={hasSubItems}
+            level={level}
+            key={currentNode}
+            isOpen={isOpen}
+          >
+            {label}
+          </ListGroupItem>
+        );
+        return [
+          ...all,
+          currentItem,
+          nodes &&
+            isOpen &&
+            this.walk({
+              data: nodes,
+              activeKey,
+              parent: currentNode,
+              level: level + 1,
+              openNodes
+            })
+        ].filter(x => x);
+      }, []);
+
+  render() {
+    const { data, activeKey } = this.props;
+    const { openNodes } = this.state;
+    return <ListGroup>{this.walk({ data, activeKey, openNodes })}</ListGroup>;
+  }
+}
 
 export default TreeViewMenu;
