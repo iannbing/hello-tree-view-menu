@@ -6,7 +6,7 @@ exports[`TreeViewMenu should render correctly 1`] = `
 >
   <ListGroupItem
     active={false}
-    hasSubItems={false}
+    hasSubItems={true}
     key="releasenotes"
     level={0}
     onClick={[Function]}
@@ -15,7 +15,7 @@ exports[`TreeViewMenu should render correctly 1`] = `
   </ListGroupItem>
   <ListGroupItem
     active={false}
-    hasSubItems={false}
+    hasSubItems={true}
     key="releasenotes/desktop-modeler"
     level={1}
     onClick={[Function]}
@@ -24,7 +24,7 @@ exports[`TreeViewMenu should render correctly 1`] = `
   </ListGroupItem>
   <ListGroupItem
     active={true}
-    hasSubItems={false}
+    hasSubItems={true}
     key="releasenotes/desktop-modeler/7"
     level={2}
     onClick={[Function]}
@@ -33,6 +33,7 @@ exports[`TreeViewMenu should render correctly 1`] = `
   </ListGroupItem>
   <ListGroupItem
     active={false}
+    hasSubItems={false}
     key="releasenotes/desktop-modeler/7/7.0"
     level={3}
     onClick={[Function]}
@@ -41,6 +42,7 @@ exports[`TreeViewMenu should render correctly 1`] = `
   </ListGroupItem>
   <ListGroupItem
     active={false}
+    hasSubItems={false}
     key="atd"
     level={0}
     onClick={[Function]}

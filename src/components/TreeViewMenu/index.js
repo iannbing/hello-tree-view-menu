@@ -11,7 +11,8 @@ const walk = ({ data, path = '', parent = '', level = 0 }) =>
     .sort((a, b) => a[1].index - b[1].index)
     .reduce((all, [key, node]) => {
       const { label, onClick, nodes, url } = node;
-      const hasSubItems = nodes && nodes.length > 1;
+      const hasSubItems = nodes !== undefined && nodes !== null;
+      if (!url) return all;
       const isActive = cleanPath(path) === cleanPath(url);
       const currentNode = [parent, key].filter(x => x).join('/');
       const currentItem = (

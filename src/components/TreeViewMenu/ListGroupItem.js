@@ -27,7 +27,7 @@ const ListGroupItem = ({
   ...props
 }) => (
   <>
-    <ListGroupItemWithPadding level={hasSubItems ? level : 0} {...props}>
+    <ListGroupItemWithPadding level={level} {...props}>
       {hasSubItems && (
         <ToggleIcon level={level}>{isOpen ? '-' : '+'}</ToggleIcon>
       )}
