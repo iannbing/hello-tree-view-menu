@@ -62,7 +62,7 @@ class TreeViewMenu extends React.Component {
         const isMatching =
           searchTerm &&
           label.toLowerCase().includes(searchTerm.trim().toLowerCase());
-        const currentItem = (!searchTerm || isMatching) && (
+        const currentItem = (
           <ListGroupItem
             hasSubItems={hasSubItems}
             isOpen={isOpen}
@@ -76,13 +76,16 @@ class TreeViewMenu extends React.Component {
         );
         const nextLevelItems =
           nodes &&
-          isOpen &&
           this.walk({
             data: nodes,
             parent: currentNode,
             level: level + 1
           });
-        return [...all, currentItem, nextLevelItems].filter(x => x);
+        return [
+          ...all,
+          (!searchTerm || isMatching) && currentItem,
+          isOpen && nextLevelItems
+        ].filter(x => x);
       }, []);
   };
 
