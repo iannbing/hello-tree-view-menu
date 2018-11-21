@@ -2,7 +2,7 @@ import React from 'react';
 import { debounce } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
-import ListGroupItem from './ListGroupItem';
+import walk from './walk';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
@@ -42,56 +42,9 @@ class TreeViewMenu extends React.Component {
     this.toggleNode(node);
   };
 
-  walk = ({ data, parent = '', level = 0 }) => {
-    const { activeKey } = this.props;
-    const { openNodes, searchTerm } = this.state;
-
-    return Object.entries(data)
-      .sort((a, b) => a[1].index - b[1].index)
-      .reduce((all, [nodeName, node]) => {
-        const { label, onClick, nodes, key } = node;
-        const hasSubItems = nodes !== undefined && nodes !== null;
-        if (!key) return all;
-        const isActive = activeKey === key;
-        const currentNode = [parent, nodeName].filter(x => x).join('/');
-        const isOpen = openNodes.includes(currentNode) || searchTerm;
-        const onClickFunction = this.getOnClickFunction({
-          onClick,
-          node: currentNode
-        });
-        const isMatching =
-          searchTerm &&
-          label.toLowerCase().includes(searchTerm.trim().toLowerCase());
-        const currentItem = (
-          <ListGroupItem
-            hasSubItems={hasSubItems}
-            isOpen={isOpen}
-            level={level}
-            onClick={onClickFunction}
-            active={isActive}
-            key={currentNode}
-          >
-            {label}
-          </ListGroupItem>
-        );
-        const nextLevelItems =
-          nodes &&
-          this.walk({
-            data: nodes,
-            parent: currentNode,
-            level: level + 1
-          });
-        return [
-          ...all,
-          (!searchTerm || isMatching) && currentItem,
-          isOpen && nextLevelItems
-        ].filter(x => x);
-      }, []);
-  };
-
   render() {
     const { data, activeKey, search } = this.props;
-    const { openNodes } = this.state;
+    const { openNodes, searchTerm } = this.state;
     return (
       <>
         {search && (
@@ -101,7 +54,15 @@ class TreeViewMenu extends React.Component {
           </InputGroup>
         )}
         {data && (
-          <ListGroup>{this.walk({ data, activeKey, openNodes })}</ListGroup>
+          <ListGroup>
+            {walk({
+              data,
+              activeKey,
+              openNodes,
+              searchTerm,
+              getOnClickFunction: this.getOnClickFunction
+            })}
+          </ListGroup>
         )}
       </>
     );

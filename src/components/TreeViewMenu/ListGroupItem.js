@@ -27,14 +27,10 @@ const ListGroupItem = ({
   children,
   ...props
 }) => (
-  <>
-    <ListGroupItemWithPadding level={level} {...props}>
-      {hasSubItems && (
-        <ToggleIcon level={level}>{isOpen ? '-' : '+'}</ToggleIcon>
-      )}
-      {children}
-    </ListGroupItemWithPadding>
-  </>
+  <ListGroupItemWithPadding level={level} {...props}>
+    {hasSubItems && <ToggleIcon level={level}>{isOpen ? '-' : '+'}</ToggleIcon>}
+    {children}
+  </ListGroupItemWithPadding>
 );
 
 export default ListGroupItem;
