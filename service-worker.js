@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://iannbing.github.io/hello-tree-view-menu/precache-manifest.36536dd008171cffb460a2ff8f573093.js"
+  "https://iannbing.github.io/hello-tree-view-menu/precache-manifest.8d8078039781e4885164353fd716cc45.js"
 );
 
 workbox.clientsClaim();
