@@ -1,10 +1,15 @@
 import React from 'react';
-// import { debounce } from 'lodash';
+import { debounce } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import ListGroupItem from './ListGroupItem';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
+
+const realtimeSearch = debounce(
+  (searchFunction, value) => searchFunction(value),
+  500
+);
 
 class TreeViewMenu extends React.Component {
   static defaultProps = {
@@ -16,7 +21,8 @@ class TreeViewMenu extends React.Component {
   state = { openNodes: [], searchTerm: '' };
 
   onChange = e => {
-    this.setState({ searchTerm: e.target.value });
+    const { value } = e.target;
+    realtimeSearch(searchTerm => this.setState({ searchTerm }), value);
   };
 
   toggleNode = node => {
