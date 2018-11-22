@@ -8,11 +8,12 @@ To generate a `TreeViewMenu`, you need to provide data in the following structur
 
 ```javascript
 const treeData = {
-  releasenotes: {             // node name
-    label: 'Release Notes',   // label of this menu item
-    onClick: () => ({}),      // defines the behavior; it will do console.warn if not specified
-    key: 'releasenotes',      // use url as unique key for the node, removing leading and trailing slashes
-    index: 0,                 // decide the order in the same level
+  releasenotes: {
+    // node name
+    label: 'Release Notes', // label of this menu item
+    onClick: () => ({}), // defines the behavior; it will do console.warn if not specified
+    key: 'releasenotes', // use url as unique key for the node, removing leading and trailing slashes
+    index: 0, // decide the order in the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
@@ -61,11 +62,11 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props     | description                                                                                                                       | type                | default |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------- |
-| data      | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | {[string]:TreeNode} | -       |
-| activeKey | the node matching this key will be highlighted                                                                                    | string              | ''      |
-| search    | enable `search` on the tree nodes' `label`                                                                                        | boolean             | false   |
+| props     | description                                                                                                                              | type                | default |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------- |
+| data      | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode} | -       |
+| activeKey | the node matching this key will be highlighted                                                                                           | string              | ''      |
+| search    | enable `search` on the tree nodes' `label`                                                                                               | boolean             | false   |
 
 TreeNode
 
