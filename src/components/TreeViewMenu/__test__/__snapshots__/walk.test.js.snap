@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`walk should only render the matching results that contains "7" 1`] = `
+<div>
+  <ListGroupItem
+    active={false}
+    hasSubItems={true}
+    isOpen="7"
+    key="releasenotes/desktop-modeler/7"
+    level={2}
+    onClick={Object {}}
+  >
+    7
+  </ListGroupItem>
+  <ListGroupItem
+    active={false}
+    hasSubItems={false}
+    isOpen="7"
+    key="releasenotes/desktop-modeler/7/7.0"
+    level={3}
+    onClick={Object {}}
+  >
+    7.0
+  </ListGroupItem>
+</div>
+`;

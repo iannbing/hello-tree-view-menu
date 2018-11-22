@@ -24,6 +24,7 @@ const walk = ({
         onClick,
         node: currentNode
       });
+      console.log('walk');
       const isMatching =
         searchTerm &&
         label.toLowerCase().includes(searchTerm.trim().toLowerCase());

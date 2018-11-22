@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TreeViewMenu from '../index';
+import walk from '../walk';
 
 const mockData = {
   atd: {
@@ -42,25 +42,18 @@ const mockData = {
   }
 };
 
-describe('TreeViewMenu', () => {
-  it('should render the roots only', () => {
+describe('walk', () => {
+  it('should only render the matching results that contains "7"', () => {
     const wrapper = shallow(
-      <TreeViewMenu
-        data={mockData}
-        activeKey="releasenotes/desktop-modeler/7"
-      />
-    );
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render search box', () => {
-    const wrapper = shallow(
-      <TreeViewMenu
-        data={mockData}
-        activeKey="releasenotes/desktop-modeler/7"
-        search
-      />
+      <div>
+        {walk({
+          data: mockData,
+          activeKey: '',
+          openNodes: [],
+          getOnClickFunction: () => ({}),
+          searchTerm: '7'
+        })}
+      </div>
     );
 
     expect(wrapper).toMatchSnapshot();

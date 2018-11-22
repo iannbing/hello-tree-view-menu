@@ -1,34 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TreeViewMenu should only render the matching results that contains "7" 1`] = `
-<Fragment>
-  <ListGroup
-    tag="ul"
-  >
-    <ListGroupItem
-      active={false}
-      hasSubItems={true}
-      isOpen=""
-      key="releasenotes"
-      level={0}
-      onClick={[Function]}
-    >
-      Release Notes
-    </ListGroupItem>
-    <ListGroupItem
-      active={false}
-      hasSubItems={false}
-      isOpen=""
-      key="atd"
-      level={0}
-      onClick={[Function]}
-    >
-      ATS Guide
-    </ListGroupItem>
-  </ListGroup>
-</Fragment>
-`;
-
 exports[`TreeViewMenu should render search box 1`] = `
 <Fragment>
   <InputGroup
