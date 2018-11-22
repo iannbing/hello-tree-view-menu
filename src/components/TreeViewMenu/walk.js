@@ -2,8 +2,6 @@ import React from 'react';
 
 import ListGroupItem from './ListGroupItem';
 
-import status from './status';
-
 const walk = ({
   data,
   parent = '',
@@ -21,12 +19,11 @@ const walk = ({
       if (!key) return all;
       const isActive = activeKey === key;
       const currentNode = [parent, nodeName].filter(x => x).join('/');
-      const isOpen = openNodes.includes(currentNode) || searchTerm;
+      const showChildren = openNodes.includes(currentNode) || searchTerm;
       const onClickFunction = getOnClickFunction({
         onClick,
         node: currentNode
       });
-      const isInitializing = status.get('isInitializing');
       const isMatching =
         searchTerm &&
         label.toLowerCase().includes(searchTerm.trim().toLowerCase());
@@ -34,7 +31,7 @@ const walk = ({
       const currentItem = (
         <ListGroupItem
           hasSubItems={hasSubItems}
-          isOpen={isOpen}
+          isOpen={showChildren}
           level={level}
           onClick={onClickFunction}
           active={isActive}
@@ -52,13 +49,14 @@ const walk = ({
           activeKey,
           openNodes,
           searchTerm,
-          getOnClickFunction
+          getOnClickFunction,
+          showChildren
         });
 
       return [
         ...all,
         (!searchTerm || isMatching) && currentItem,
-        (isOpen || isInitializing) && nextLevelItems
+        showChildren && nextLevelItems
       ].filter(x => x);
     }, []);
 

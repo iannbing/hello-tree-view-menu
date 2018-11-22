@@ -1,9 +1,8 @@
-import React from 'react';
-import { debounce } from 'lodash';
+import React, { Suspense } from 'react';
+import { debounce, isEqual } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import walk from './walk';
-import status from './status';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
@@ -20,6 +19,18 @@ class TreeViewMenu extends React.Component {
   };
 
   state = { openNodes: [], searchTerm: '' };
+
+  componentDidMount() {
+    this.loadListItems();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { data } = this.props;
+    const { openNodes } = this.state;
+    if (isEqual(prevProps.data !== data) || prevState.openNodes !== openNodes) {
+      this.loadListItems();
+    }
+  }
 
   onChange = e => {
     const { value } = e.target;
@@ -43,36 +54,25 @@ class TreeViewMenu extends React.Component {
     this.toggleNode(node);
   };
 
-  preload = () => {
+  loadListItems = () => {
     const { data, activeKey } = this.props;
     const { openNodes, searchTerm } = this.state;
-    status.set('isInitializing', true);
-    // load the whole tree to memory to prevent first-time-loading freezzing
-    walk({
-      data,
-      activeKey,
-      openNodes,
-      searchTerm,
-      getOnClickFunction: this.getOnClickFunction
-    });
-    status.set('isInitializing', false);
-  };
 
-  getListItems = () => {
-    const { data, activeKey } = this.props;
-    const { openNodes, searchTerm } = this.state;
-    this.preload();
-    return walk({
-      data,
-      activeKey,
-      openNodes,
-      searchTerm,
-      getOnClickFunction: this.getOnClickFunction
+    this.setState({
+      items: walk({
+        data,
+        activeKey,
+        openNodes,
+        searchTerm,
+        getOnClickFunction: this.getOnClickFunction
+      })
     });
   };
 
   render() {
     const { data, search } = this.props;
+    const { items } = this.state;
+
     return (
       <>
         {search && (
@@ -81,7 +81,11 @@ class TreeViewMenu extends React.Component {
             <Input onChange={this.onChange} />
           </InputGroup>
         )}
-        {data && <ListGroup>{this.getListItems()}</ListGroup>}
+        {data && (
+          <Suspense fallback={<div>loading...</div>}>
+            <ListGroup>{items}</ListGroup>
+          </Suspense>
+        )}
       </>
     );
   }
