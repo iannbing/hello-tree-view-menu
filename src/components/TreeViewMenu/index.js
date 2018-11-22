@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { debounce, isEqual } from 'lodash';
+import React from 'react';
+import { debounce } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import walk from './walk';
@@ -19,18 +19,6 @@ class TreeViewMenu extends React.Component {
   };
 
   state = { openNodes: [], searchTerm: '' };
-
-  componentDidMount() {
-    this.loadListItems();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { data } = this.props;
-    const { openNodes } = this.state;
-    if (isEqual(prevProps.data !== data) || prevState.openNodes !== openNodes) {
-      this.loadListItems();
-    }
-  }
 
   onChange = e => {
     const { value } = e.target;
@@ -58,20 +46,17 @@ class TreeViewMenu extends React.Component {
     const { data, activeKey } = this.props;
     const { openNodes, searchTerm } = this.state;
 
-    this.setState({
-      items: walk({
-        data,
-        activeKey,
-        openNodes,
-        searchTerm,
-        getOnClickFunction: this.getOnClickFunction
-      })
+    return walk({
+      data,
+      activeKey,
+      openNodes,
+      searchTerm,
+      getOnClickFunction: this.getOnClickFunction
     });
   };
 
   render() {
     const { data, search } = this.props;
-    const { items } = this.state;
 
     return (
       <>
@@ -81,11 +66,7 @@ class TreeViewMenu extends React.Component {
             <Input onChange={this.onChange} />
           </InputGroup>
         )}
-        {data && (
-          <Suspense fallback={<div>loading...</div>}>
-            <ListGroup>{items}</ListGroup>
-          </Suspense>
-        )}
+        {data && <ListGroup>{this.loadListItems()}</ListGroup>}
       </>
     );
   }
