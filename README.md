@@ -54,7 +54,7 @@ And then import `TreeViewMenu` and use it.
 <TreeViewMenu
   data={treeData}
   activeKey="releasenotes/desktop-modeler/7.0"
-  searchTerm="7"
+  search
 />
 ```
 
