@@ -47,6 +47,7 @@ class TreeViewMenu extends React.Component {
     const { data, activeKey } = this.props;
     const { openNodes, searchTerm } = this.state;
     status.set('isInitializing', true);
+    // load the whole tree to memory to prevent first-time-loading freezzing
     walk({
       data,
       activeKey,
