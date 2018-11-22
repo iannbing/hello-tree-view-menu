@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import walk from './walk';
+import status from './status';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
@@ -42,9 +43,35 @@ class TreeViewMenu extends React.Component {
     this.toggleNode(node);
   };
 
-  render() {
-    const { data, activeKey, search } = this.props;
+  preload = () => {
+    const { data, activeKey } = this.props;
     const { openNodes, searchTerm } = this.state;
+    status.set('isInitializing', true);
+    walk({
+      data,
+      activeKey,
+      openNodes,
+      searchTerm,
+      getOnClickFunction: this.getOnClickFunction
+    });
+    status.set('isInitializing', false);
+  };
+
+  getListItems = () => {
+    const { data, activeKey } = this.props;
+    const { openNodes, searchTerm } = this.state;
+    this.preload();
+    return walk({
+      data,
+      activeKey,
+      openNodes,
+      searchTerm,
+      getOnClickFunction: this.getOnClickFunction
+    });
+  };
+
+  render() {
+    const { data, search } = this.props;
     return (
       <>
         {search && (
@@ -53,17 +80,7 @@ class TreeViewMenu extends React.Component {
             <Input onChange={this.onChange} />
           </InputGroup>
         )}
-        {data && (
-          <ListGroup>
-            {walk({
-              data,
-              activeKey,
-              openNodes,
-              searchTerm,
-              getOnClickFunction: this.getOnClickFunction
-            })}
-          </ListGroup>
-        )}
+        {data && <ListGroup>{this.getListItems()}</ListGroup>}
       </>
     );
   }

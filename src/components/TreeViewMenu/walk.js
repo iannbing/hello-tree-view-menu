@@ -2,6 +2,8 @@ import React from 'react';
 
 import ListGroupItem from './ListGroupItem';
 
+import status from './status';
+
 const walk = ({
   data,
   parent = '',
@@ -24,9 +26,11 @@ const walk = ({
         onClick,
         node: currentNode
       });
+      const isInitializing = status.get('isInitializing');
       const isMatching =
         searchTerm &&
         label.toLowerCase().includes(searchTerm.trim().toLowerCase());
+
       const currentItem = (
         <ListGroupItem
           hasSubItems={hasSubItems}
@@ -54,7 +58,7 @@ const walk = ({
       return [
         ...all,
         (!searchTerm || isMatching) && currentItem,
-        isOpen && nextLevelItems
+        (isOpen || isInitializing) && nextLevelItems
       ].filter(x => x);
     }, []);
 
