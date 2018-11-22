@@ -62,21 +62,21 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props     | description                                                                                                                       | type     | default |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| data      | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | TreeNode | -       |
-| activeKey | the node matching this key will be highlighted                                                                                    | string   | ''      |
-| search    | enable `search` on the tree nodes' `label`                                                                                        | boolean  | false   |
+| props     | description                                                                                                                       | type                | default |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------- |
+| data      | Data that defines the structure of the tree. You can nest it as many as you want, but note that it might cause performance issue. | {[string]:TreeNode} | -       |
+| activeKey | the node matching this key will be highlighted                                                                                    | string              | ''      |
+| search    | enable `search` on the tree nodes' `label`                                                                                        | boolean             | false   |
 
 TreeNode
 
-| props   | description                                                                             | type       | default        |
-| ------- | --------------------------------------------------------------------------------------- | ---------- | -------------- |
-| label   | the rendered text of a Node                                                             | string     | ''             |
-| onClick | a function that is called when a node is clicked                                        | function   | `console.warn` |
-| key     | a unique key that represent this node                                                   | string     | -              |
-| index   | a number that defines the order of the nodes in the same level                          | number     | -              |
-| nodes   | \[optional\] a node without this property means that it is the last child of its branch | TreeNode[] | -              |
+| props   | description                                                                             | type                | default        |
+| ------- | --------------------------------------------------------------------------------------- | ------------------- | -------------- |
+| label   | the rendered text of a Node                                                             | string              | ''             |
+| onClick | a function that is called when a node is clicked                                        | function            | `console.warn` |
+| key     | a unique key that represent this node                                                   | string              | -              |
+| index   | a number that defines the order of the nodes in the same level                          | number              | -              |
+| nodes   | \[optional\] a node without this property means that it is the last child of its branch | {[string]:TreeNode} | -              |
 
 ## Dependencies
 
