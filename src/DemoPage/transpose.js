@@ -28,27 +28,22 @@ const cleanPath = path =>
 const transposeSpace = ({ space, navigate, spaceIndex }) => {
   const { content } = space;
   return content.pages.reduce((allPages, currentPage, pageIndex) => {
-    const {
-      t, // title
-      // c, // category
-      // i, // identifier
-      u, // url
-      // d, // directory
-      m, // is space
-      p // parent page
-    } = currentPage;
-    const path = u.split('/').filter(x => x);
+    const label = currentPage.t;
+    const url = currentPage.u;
+    const isSpace = !!currentPage.m;
+    const parentPage = currentPage.p;
+    const path = url.split('/').filter(x => x);
 
     // if it has a parent page, insert it to have complete nodes
-    if (p) path.splice(path.length - 1, 0, p);
+    if (parentPage) path.splice(path.length - 1, 0, parentPage);
 
     const newObj = createObjFromKeys({
       keys: path,
       value: {
-        label: t,
-        onClick: () => navigate(u),
-        key: cleanPath(u),
-        index: m ? spaceIndex : pageIndex
+        label,
+        onClick: () => navigate(url),
+        key: cleanPath(url),
+        index: isSpace ? spaceIndex : pageIndex
       }
     });
     return merge(newObj, allPages);
