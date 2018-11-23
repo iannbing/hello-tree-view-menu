@@ -46,8 +46,7 @@ describe('walk', () => {
   it('should only render the matching results that contains "7"', () => {
     const wrapper = shallow(
       <div>
-        {walk({
-          data: mockData,
+        {walk(mockData, {
           activeKey: '',
           openNodes: [],
           getOnClickFunction: () => ({}),

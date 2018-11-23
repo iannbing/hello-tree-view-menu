@@ -24,7 +24,6 @@ exports[`TreeViewMenu should render search box 1`] = `
       hasSubItems={true}
       isOpen=""
       key="releasenotes"
-      level={0}
       onClick={[Function]}
     >
       Release Notes
@@ -32,9 +31,8 @@ exports[`TreeViewMenu should render search box 1`] = `
     <ListGroupItem
       active={false}
       hasSubItems={false}
-      isOpen=""
+      isOpen={false}
       key="atd"
-      level={0}
       onClick={[Function]}
     >
       ATS Guide
@@ -53,7 +51,6 @@ exports[`TreeViewMenu should render the roots only 1`] = `
       hasSubItems={true}
       isOpen=""
       key="releasenotes"
-      level={0}
       onClick={[Function]}
     >
       Release Notes
@@ -61,9 +58,8 @@ exports[`TreeViewMenu should render the roots only 1`] = `
     <ListGroupItem
       active={false}
       hasSubItems={false}
-      isOpen=""
+      isOpen={false}
       key="atd"
-      level={0}
       onClick={[Function]}
     >
       ATS Guide

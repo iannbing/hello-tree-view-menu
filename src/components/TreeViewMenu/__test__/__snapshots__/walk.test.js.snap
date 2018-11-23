@@ -15,7 +15,7 @@ exports[`walk should only render the matching results that contains "7" 1`] = `
   <ListGroupItem
     active={false}
     hasSubItems={false}
-    isOpen="7"
+    isOpen={false}
     key="releasenotes/desktop-modeler/7/7.0"
     level={3}
     onClick={Object {}}
