@@ -43,12 +43,7 @@ const getNodeComponent = (node, nodeName, props) => {
   const showChildren =
     !!nodes && (openNodes.includes(currentNode) || searchTerm);
 
-  const currentItem = getItem({
-    showChildren,
-    currentNode,
-    ...props,
-    ...node
-  });
+  const currentItem = getItem({ showChildren, currentNode, ...props, ...node });
   const nextLevelItems = showChildren
     ? walk(nodes, { ...props, parent: currentNode, level: level + 1 })
     : [];
