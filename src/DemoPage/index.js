@@ -12,6 +12,12 @@ const cleanPath = path =>
     .filter(x => x)
     .join('/');
 
+const Icon = ({ on }) => (
+  <div style={{ fontWeight: 'bold', position: 'absolute', left: -8 }}>
+    {on ? '[-]' : '[+]'}
+  </div>
+);
+
 class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
     const path = get(props, 'location.pathname');
@@ -41,7 +47,12 @@ class DemoPage extends Component {
     return (
       <>
         {treeData && (
-          <TreeViewMenu data={treeData} activeKey={activeKey} search />
+          <TreeViewMenu
+            data={treeData}
+            activeKey={activeKey}
+            search
+            toggleIcon={Icon} // remove this prop to see the default icon
+          />
         )}
       </>
     );

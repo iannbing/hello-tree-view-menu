@@ -59,6 +59,7 @@ exports[`DemoPage should render correctly 1`] = `
       ]
     }
     search={true}
+    toggleIcon={[Function]}
   />
 </DemoPage>
 `;

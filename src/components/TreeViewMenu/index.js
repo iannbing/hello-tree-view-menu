@@ -15,7 +15,8 @@ class TreeViewMenu extends React.Component {
   static defaultProps = {
     data: null,
     activeKey: '',
-    search: false
+    search: false,
+    onClickItem: defaultOnClick
   };
 
   state = { openNodes: [], searchTerm: '' };
@@ -43,14 +44,15 @@ class TreeViewMenu extends React.Component {
   };
 
   loadListItems = () => {
-    const { data, activeKey } = this.props;
+    const { data, activeKey, toggleIcon } = this.props;
     const { openNodes, searchTerm } = this.state;
 
     return walk(data, {
       activeKey,
       openNodes,
       searchTerm,
-      getOnClickFunction: this.getOnClickFunction
+      getOnClickFunction: this.getOnClickFunction,
+      toggleIcon
     });
   };
 

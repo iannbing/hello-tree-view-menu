@@ -22,7 +22,7 @@ exports[`TreeViewMenu should render search box 1`] = `
     <ListGroupItem
       active={false}
       hasSubItems={true}
-      isOpen=""
+      isOpen={false}
       key="releasenotes"
       onClick={[Function]}
     >
@@ -49,7 +49,7 @@ exports[`TreeViewMenu should render the roots only 1`] = `
     <ListGroupItem
       active={false}
       hasSubItems={true}
-      isOpen=""
+      isOpen={false}
       key="releasenotes"
       onClick={[Function]}
     >
