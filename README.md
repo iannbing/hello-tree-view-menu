@@ -11,25 +11,21 @@ const treeData = {
   releasenotes: {
     // node name
     label: 'Release Notes', // label of this menu item
-    onClick: () => ({}), // defines the behavior; it will do console.warn if not specified
     key: 'releasenotes', // use url as unique key for the node, removing leading and trailing slashes
     index: 0, // decide the rendering order on the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
-        onClick: () => ({}),
         key: 'releasenotes/desktop-modeler',
         index: 0,
         nodes: {
           7: {
             label: '7',
-            onClick: () => ({}),
             key: 'releasenotes/desktop-modeler/7',
             index: 0,
             nodes: {
               '7.0': {
                 label: '7.0',
-                onClick: () => ({}),
                 key: 'releasenotes/desktop-modeler/7.0', // note that the URL is not necessarily reflecting the node path
                 index: 0
               }
@@ -41,7 +37,6 @@ const treeData = {
   },
   atd: {
     label: 'ATS Guide',
-    onClick: () => ({}),
     key: 'ats',
     index: 1 // i.e. ATS Guide should be right after Release Notes (index: 0)
   }
@@ -55,6 +50,9 @@ And then import `TreeViewMenu` and use it.
   data={treeData}
   activeKey="releasenotes/desktop-modeler/7.0"
   search
+  onClickItem={({ node, label, key }) => {
+    console.log({ node, label, key });
+  }}
 />
 ```
 
