@@ -25,7 +25,7 @@ const cleanPath = path =>
     .filter(x => x)
     .join('/');
 
-const transposeSpace = ({ space, navigate, spaceIndex }) => {
+const transposeSpace = ({ space, spaceIndex }) => {
   const { content } = space;
   return content.pages.reduce((allPages, currentPage, pageIndex) => {
     const label = currentPage.t;
@@ -41,7 +41,6 @@ const transposeSpace = ({ space, navigate, spaceIndex }) => {
       keys: path,
       value: {
         label,
-        onClick: () => navigate(url),
         key: cleanPath(url),
         index: isSpace ? spaceIndex : pageIndex
       }
@@ -50,13 +49,12 @@ const transposeSpace = ({ space, navigate, spaceIndex }) => {
   }, {});
 };
 
-const transpose = ({ data, navigate, index }) => {
+const transpose = ({ data, index }) => {
   if (Array.isArray(data))
     return data.reduce((allSpaces, currentSpace, spaceIndex) => {
       const currentSpacePages = transposeSpace({
         space: currentSpace,
-        spaceIndex,
-        navigate
+        spaceIndex
       });
       return {
         ...allSpaces,
@@ -65,8 +63,7 @@ const transpose = ({ data, navigate, index }) => {
     }, {});
   return transposeSpace({
     space: data,
-    spaceIndex: index,
-    navigate
+    spaceIndex: index
   });
 };
 
