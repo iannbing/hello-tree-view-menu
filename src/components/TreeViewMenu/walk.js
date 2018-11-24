@@ -18,17 +18,16 @@ const generateBranch = (node, nodeName, props) => {
   const { nodes, key } = node;
   const currentNode = [parent, nodeName].filter(x => x).join('/');
   const isActive = activeKey === key;
-  const showChildren =
-    !!nodes && (openNodes.includes(currentNode) || searchTerm || isActive);
+  const isOpen = !!nodes && (openNodes.includes(currentNode) || !!searchTerm);
 
   const currentItem = getComponent({
-    showChildren,
+    isOpen,
     currentNode,
     isActive,
     ...props,
     ...node
   });
-  const nextLevelItems = showChildren
+  const nextLevelItems = isOpen
     ? walk(nodes, { ...props, parent: currentNode, level: level + 1 })
     : [];
 
@@ -37,28 +36,30 @@ const generateBranch = (node, nodeName, props) => {
 
 const getComponent = ({
   isActive,
-  showChildren,
+  isOpen,
   nodes,
+  key,
   level,
   currentNode,
   label,
   searchTerm,
-  getOnClickFunction,
-  onClick,
+  getOnClickItem,
   toggleIcon
 }) => {
   const showCurrent =
     !searchTerm ||
     label.toLowerCase().includes(searchTerm.trim().toLowerCase());
-  const onClickFunction = getOnClickFunction({ onClick, node: currentNode });
+  const onClickItem = getOnClickItem({ node: currentNode, label, key });
+
+  //   console.log(isOpen);
 
   return (
     showCurrent && (
       <ListGroupItem
         hasSubItems={!!nodes}
-        isOpen={showChildren}
+        isOpen={isOpen}
         level={level}
-        onClick={onClickFunction}
+        onClick={onClickItem}
         active={isActive}
         key={currentNode}
         toggleIcon={toggleIcon}

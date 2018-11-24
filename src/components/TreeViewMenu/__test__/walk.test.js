@@ -49,7 +49,7 @@ describe('walk', () => {
         {walk(mockData, {
           activeKey: '',
           openNodes: [],
-          getOnClickFunction: () => ({}),
+          getOnClickItem: () => ({}),
           searchTerm: '7'
         })}
       </div>

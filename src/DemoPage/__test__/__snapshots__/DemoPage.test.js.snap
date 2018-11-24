@@ -58,6 +58,7 @@ exports[`DemoPage should render correctly 1`] = `
         },
       ]
     }
+    onClickItem={[Function]}
     search={true}
     toggleIcon={[Function]}
   />

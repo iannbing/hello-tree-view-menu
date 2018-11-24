@@ -37,10 +37,10 @@ class TreeViewMenu extends React.Component {
     }
   };
 
-  getOnClickFunction = ({ onClick, node }) => () => {
-    const onClickFn = onClick || defaultOnClick;
-    onClickFn();
-    this.toggleNode(node);
+  getOnClickItem = props => () => {
+    const { onClickItem } = this.props;
+    onClickItem(props);
+    this.toggleNode(props.node);
   };
 
   loadListItems = () => {
@@ -51,8 +51,8 @@ class TreeViewMenu extends React.Component {
       activeKey,
       openNodes,
       searchTerm,
-      getOnClickFunction: this.getOnClickFunction,
-      toggleIcon
+      toggleIcon,
+      getOnClickItem: this.getOnClickItem
     });
   };
 

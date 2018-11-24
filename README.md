@@ -8,11 +8,12 @@ To generate a `TreeViewMenu`, you need to provide data in the following structur
 
 ```javascript
 const treeData = {
-  releasenotes: {             // node name
-    label: 'Release Notes',   // label of this menu item
-    onClick: () => ({}),      // defines the behavior; it will do console.warn if not specified
-    key: 'releasenotes',      // use url as unique key for the node, removing leading and trailing slashes
-    index: 0,                 // decide the rendering order on the same level
+  releasenotes: {
+    // node name
+    label: 'Release Notes', // label of this menu item
+    onClick: () => ({}), // defines the behavior; it will do console.warn if not specified
+    key: 'releasenotes', // use url as unique key for the node, removing leading and trailing slashes
+    index: 0, // decide the rendering order on the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
@@ -61,22 +62,22 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props      | description                                                                                                                              | type                          | default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ------- |
-| data       | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}           | -       |
-| activeKey  | the node matching this key will be highlighted                                                                                           | string                        | ''      |
-| search     | enable `search` on the tree nodes' `label`                                                                                               | boolean                       | false   |
-| toggleIcon | A cusom React component that shows the "expanding" states of an node; it must have a `on` prop (boolean).                                | React.Component<{on:boolean}> | -       |
+| props       | description                                                                                                                              | type                          | default        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | -------------- |
+| data        | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}           | -              |
+| activeKey   | the node matching this key will be highlighted                                                                                           | string                        | ''             |
+| search      | enable `search` on the tree nodes' `label`                                                                                               | boolean                       | false          |
+| toggleIcon  | A cusom React component that shows the "expanding" states of an node; it must have a `on` prop (boolean).                                | React.Component<{on:boolean}> | -              |
+| onClickItem | A callback function that defines the behavior when user clicks on an node                                                                | ({node, label, key}): void    | `console.warn` |
 
 TreeNode
 
-| props   | description                                                                             | type                | default        |
-| ------- | --------------------------------------------------------------------------------------- | ------------------- | -------------- |
-| label   | the rendered text of a Node                                                             | string              | ''             |
-| onClick | a function that is called when a node is clicked                                        | function            | `console.warn` |
-| key     | a unique key that represent this node                                                   | string              | -              |
-| index   | a number that defines the rendering order of this node on the same level                | number              | -              |
-| nodes   | \[optional\] a node without this property means that it is the last child of its branch | {[string]:TreeNode} | -              |
+| props | description                                                                             | type                | default |
+| ----- | --------------------------------------------------------------------------------------- | ------------------- | ------- |
+| label | the rendered text of a Node                                                             | string              | ''      |
+| key   | a unique key that represent this node                                                   | string              | -       |
+| index | a number that defines the rendering order of this node on the same level                | number              | -       |
+| nodes | \[optional\] a node without this property means that it is the last child of its branch | {[string]:TreeNode} | -       |
 
 ## Dependencies
 
