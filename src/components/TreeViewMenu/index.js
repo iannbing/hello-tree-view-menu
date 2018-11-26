@@ -6,24 +6,28 @@ import walk from './walk';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
-const realtimeSearch = debounce(
-  (searchFunction, value) => searchFunction(value),
-  500
-);
+const getDebouncedSearch = timeout =>
+  debounce((searchFunction, value) => searchFunction(value), timeout);
 
 class TreeViewMenu extends React.Component {
   static defaultProps = {
     data: null,
     activeKey: '',
     search: false,
-    onClickItem: defaultOnClick
+    onClickItem: defaultOnClick,
+    debounceTime: 125
   };
 
   state = { openNodes: [], searchTerm: '' };
 
+  componentDidMount() {
+    const { debounceTime } = this.props;
+    this.search = getDebouncedSearch(debounceTime);
+  }
+
   onChange = e => {
     const { value } = e.target;
-    realtimeSearch(searchTerm => this.setState({ searchTerm }), value);
+    this.search(searchTerm => this.setState({ searchTerm }), value);
   };
 
   toggleNode = node => {

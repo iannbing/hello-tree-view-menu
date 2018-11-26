@@ -56,6 +56,7 @@ class DemoPage extends Component {
               this.navigate(key);
               console.log({ node, label, key }); // eslint-disable-line no-console
             }}
+            debounceTime={125}
           />
         )}
       </>
