@@ -1,36 +1,28 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-
 import walk from '../walk';
 
 const mockData = {
   atd: {
     label: 'ATS Guide',
-    onClick: () => ({}),
     key: 'ats',
     index: 1 // ATS Guide should be after Release Notes
   },
   releasenotes: {
     label: 'Release Notes',
-    onClick: () => ({}),
     key: 'releasenotes',
     index: 0, // Release Notes should be first
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
-        onClick: () => ({}),
         key: 'releasenotes/desktop-modeler',
         index: 0,
         nodes: {
           7: {
             label: '7',
-            onClick: () => ({}),
             key: 'releasenotes/desktop-modeler/7',
             index: 0,
             nodes: {
               '7.0': {
                 label: '7.0',
-                onClick: () => ({}),
                 key: 'releasenotes/desktop-modeler/7.0',
                 index: 0
               }
@@ -43,18 +35,44 @@ const mockData = {
 };
 
 describe('walk', () => {
-  it('should only render the matching results that contains "7"', () => {
-    const wrapper = shallow(
-      <div>
-        {walk(mockData, {
-          activeKey: '',
-          openNodes: [],
-          getOnClickItem: () => ({}),
-          searchTerm: '7'
-        })}
-      </div>
-    );
+  it('should transpose data to a desired shape', () => {
+    const result = walk(mockData, {
+      openNodes: [],
+      searchTerm: '7'
+    });
 
-    expect(wrapper).toMatchSnapshot();
+    const expected = [
+      {
+        currentNode: 'releasenotes/desktop-modeler/7',
+        index: 0,
+        isOpen: true,
+        key: 'releasenotes/desktop-modeler/7',
+        label: '7',
+        level: 2,
+        nodes: {
+          '7.0': {
+            index: 0,
+            key: 'releasenotes/desktop-modeler/7.0',
+            label: '7.0'
+          }
+        },
+        openNodes: [],
+        parent: 'releasenotes/desktop-modeler',
+        searchTerm: '7'
+      },
+      {
+        currentNode: 'releasenotes/desktop-modeler/7/7.0',
+        index: 0,
+        isOpen: false,
+        key: 'releasenotes/desktop-modeler/7.0',
+        label: '7.0',
+        level: 3,
+        openNodes: [],
+        parent: 'releasenotes/desktop-modeler/7',
+        searchTerm: '7'
+      }
+    ];
+
+    expect(result).toEqual(expected);
   });
 });
