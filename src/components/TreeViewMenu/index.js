@@ -1,9 +1,11 @@
 import React from 'react';
 import { debounce } from 'lodash';
-import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import walk from './walk';
-import ListGroupItem from './ListGroupItem';
+import defaultRenderItem, {
+  ListGroup as defaultListGroup,
+  renderSearch as defaultRenderSearch
+} from './renderItem';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
@@ -16,7 +18,10 @@ class TreeViewMenu extends React.Component {
     activeKey: '',
     search: false,
     onClickItem: defaultOnClick,
-    debounceTime: 125
+    debounceTime: 125,
+    renderItem: defaultRenderItem,
+    groupComponent: defaultListGroup,
+    renderSearch: defaultRenderSearch
   };
 
   state = { openNodes: [], searchTerm: '' };
@@ -26,7 +31,7 @@ class TreeViewMenu extends React.Component {
     this.search = getDebouncedSearch(debounceTime);
   }
 
-  onChange = e => {
+  onSearch = e => {
     const { value } = e.target;
     this.search(searchTerm => this.setState({ searchTerm }), value);
   };
@@ -49,40 +54,32 @@ class TreeViewMenu extends React.Component {
   };
 
   loadListItems = () => {
-    const { data, activeKey, toggleIcon } = this.props;
+    const { data, activeKey, toggleIcon, renderItem } = this.props;
     const { openNodes, searchTerm } = this.state;
 
     const items = walk(data, { openNodes, searchTerm });
 
     return items.map(({ isOpen, nodes, key, level, nodePath, label }) => {
       const onClick = this.getOnClickItem({ nodePath, label, key });
-      return (
-        <ListGroupItem
-          hasSubItems={!!nodes}
-          isOpen={isOpen}
-          level={level}
-          onClick={onClick}
-          active={key === activeKey}
-          key={nodePath}
-          toggleIcon={toggleIcon}
-        >
-          {label}
-        </ListGroupItem>
-      );
+      return renderItem({
+        hasSubItems: !!nodes,
+        isOpen,
+        level,
+        onClick,
+        active: key === activeKey,
+        key: nodePath,
+        toggleIcon,
+        label
+      });
     });
   };
 
   render() {
-    const { data, search } = this.props;
-
+    const { data, search, renderSearch, groupComponent } = this.props;
+    const ListGroup = groupComponent;
     return (
       <>
-        {search && (
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
-            <Input onChange={this.onChange} />
-          </InputGroup>
-        )}
+        {search && renderSearch(this.onSearch)}
         {data && <ListGroup>{this.loadListItems()}</ListGroup>}
       </>
     );
