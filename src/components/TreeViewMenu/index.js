@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import { ListGroup, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 import walk from './walk';
+import ListGroupItem from './ListGroupItem';
 
 const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
 
@@ -44,19 +45,30 @@ class TreeViewMenu extends React.Component {
   getOnClickItem = props => () => {
     const { onClickItem } = this.props;
     onClickItem(props);
-    this.toggleNode(props.node);
+    this.toggleNode(props.nodePath);
   };
 
   loadListItems = () => {
     const { data, activeKey, toggleIcon } = this.props;
     const { openNodes, searchTerm } = this.state;
 
-    return walk(data, {
-      activeKey,
-      openNodes,
-      searchTerm,
-      toggleIcon,
-      getOnClickItem: this.getOnClickItem
+    const items = walk(data, { openNodes, searchTerm });
+
+    return items.map(({ isOpen, nodes, key, level, nodePath, label }) => {
+      const onClick = this.getOnClickItem({ nodePath, label, key });
+      return (
+        <ListGroupItem
+          hasSubItems={!!nodes}
+          isOpen={isOpen}
+          level={level}
+          onClick={onClick}
+          active={key === activeKey}
+          key={nodePath}
+          toggleIcon={toggleIcon}
+        >
+          {label}
+        </ListGroupItem>
+      );
     });
   };
 
