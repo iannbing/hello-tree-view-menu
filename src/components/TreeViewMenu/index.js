@@ -6,9 +6,9 @@ import {
   renderItem as defaultRenderItem,
   renderGroup as defaultRenderGroup,
   renderSearch as defaultRenderSearch
-} from './renderItem';
+} from './renderProps';
 
-const defaultOnClick = () => console.warn('no behavior defined'); // eslint-disable-line no-console
+const defaultOnClick = props => console.log(props); // eslint-disable-line no-console
 
 const getDebouncedSearch = timeout =>
   debounce((searchFunction, value) => searchFunction(value), timeout);

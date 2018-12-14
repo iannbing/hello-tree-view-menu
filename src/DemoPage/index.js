@@ -5,6 +5,7 @@ import { get } from 'lodash';
 import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
 import transpose from './transpose';
+import { renderItem, renderGroup, renderSearch } from './renderProps';
 
 const cleanPath = path =>
   path
@@ -45,11 +46,14 @@ class DemoPage extends Component {
             data={treeData}
             activeKey={activeKey}
             search
-            onClickItem={({ node, label, key }) => {
+            onClickItem={({ nodePath, label, key }) => {
               this.navigate(key);
-              console.log({ node, label, key }); // eslint-disable-line no-console
+              console.log({ nodePath, label, key }); // eslint-disable-line no-console
             }}
             debounceTime={125}
+            renderItem={renderItem}
+            renderGroup={renderGroup}
+            renderSearch={renderSearch}
           />
         )}
       </>
