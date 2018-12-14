@@ -2,68 +2,64 @@
 
 exports[`TreeViewMenu should render search box 1`] = `
 <Fragment>
-  <InputGroup
-    tag="div"
-  >
-    <InputGroupAddon
-      addonType="prepend"
-      tag="div"
-    >
-      Search
-    </InputGroupAddon>
-    <Input
-      onChange={[Function]}
-      type="text"
-    />
-  </InputGroup>
-  <ListGroup
-    tag="ul"
-  >
-    <ListGroupItem
+  <Styled(input)
+    onChange={[Function]}
+    placeholder="Type and search"
+  />
+  <Styled(ul)>
+    <Styled(li)
       active={false}
-      hasSubItems={true}
-      isOpen={false}
       key="releasenotes"
+      level={0}
       onClick={[Function]}
     >
+      <Styled(div)
+        level={0}
+      >
+        <ToggleIcon
+          on={false}
+        />
+      </Styled(div)>
       Release Notes
-    </ListGroupItem>
-    <ListGroupItem
+    </Styled(li)>
+    <Styled(li)
       active={false}
-      hasSubItems={false}
-      isOpen={false}
       key="atd"
+      level={0}
       onClick={[Function]}
     >
       ATS Guide
-    </ListGroupItem>
-  </ListGroup>
+    </Styled(li)>
+  </Styled(ul)>
 </Fragment>
 `;
 
 exports[`TreeViewMenu should render the roots only 1`] = `
 <Fragment>
-  <ListGroup
-    tag="ul"
-  >
-    <ListGroupItem
+  <Styled(ul)>
+    <Styled(li)
       active={false}
-      hasSubItems={true}
-      isOpen={false}
       key="releasenotes"
+      level={0}
       onClick={[Function]}
     >
+      <Styled(div)
+        level={0}
+      >
+        <ToggleIcon
+          on={false}
+        />
+      </Styled(div)>
       Release Notes
-    </ListGroupItem>
-    <ListGroupItem
+    </Styled(li)>
+    <Styled(li)
       active={false}
-      hasSubItems={false}
-      isOpen={false}
       key="atd"
+      level={0}
       onClick={[Function]}
     >
       ATS Guide
-    </ListGroupItem>
-  </ListGroup>
+    </Styled(li)>
+  </Styled(ul)>
 </Fragment>
 `;

@@ -43,7 +43,7 @@ describe('walk', () => {
 
     const expected = [
       {
-        currentNode: 'releasenotes/desktop-modeler/7',
+        nodePath: 'releasenotes/desktop-modeler/7',
         index: 0,
         isOpen: true,
         key: 'releasenotes/desktop-modeler/7',
@@ -61,7 +61,7 @@ describe('walk', () => {
         searchTerm: '7'
       },
       {
-        currentNode: 'releasenotes/desktop-modeler/7/7.0',
+        nodePath: 'releasenotes/desktop-modeler/7/7.0',
         index: 0,
         isOpen: false,
         key: 'releasenotes/desktop-modeler/7.0',
