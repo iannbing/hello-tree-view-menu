@@ -20,10 +20,12 @@ const ListItemContainer = styled('li')(({ level = 0, active }) => ({
   background: active ? '#179ed3' : 'none'
 }));
 
-export const ListGroup = styled('ul')({
+const ListGroup = styled('ul')({
   listStyleType: 'none',
   paddingLeft: 0
 });
+
+export const renderGroup = items => <ListGroup>{items}</ListGroup>;
 
 const Input = styled('input')({
   margin: '.5em',

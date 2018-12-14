@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 
 import walk from './walk';
 import defaultRenderItem, {
-  ListGroup as defaultListGroup,
+  renderGroup as defaultRenderGroup,
   renderSearch as defaultRenderSearch
 } from './renderItem';
 
@@ -20,7 +20,8 @@ class TreeViewMenu extends React.Component {
     onClickItem: defaultOnClick,
     debounceTime: 125,
     renderItem: defaultRenderItem,
-    groupComponent: defaultListGroup,
+    // groupComponent: defaultListGroup,
+    renderGroup: defaultRenderGroup,
     renderSearch: defaultRenderSearch
   };
 
@@ -75,12 +76,11 @@ class TreeViewMenu extends React.Component {
   };
 
   render() {
-    const { data, search, renderSearch, groupComponent } = this.props;
-    const ListGroup = groupComponent;
+    const { data, search, renderSearch, renderGroup } = this.props;
     return (
       <>
         {search && renderSearch(this.onSearch)}
-        {data && <ListGroup>{this.loadListItems()}</ListGroup>}
+        {data && renderGroup(this.loadListItems())}
       </>
     );
   }
