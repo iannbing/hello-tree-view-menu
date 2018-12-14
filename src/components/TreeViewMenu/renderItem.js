@@ -13,9 +13,11 @@ const ToggleIconContainer = styled('div')(({ level = 0 }) => ({
   height: `${ICON_SIZE}rem`
 }));
 
-const ListItemContainer = styled('li')(({ level = 0 }) => ({
+const ListItemContainer = styled('li')(({ level = 0, active }) => ({
   paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`,
-  cursor: 'pointer'
+  cursor: 'pointer',
+  color: active ? 'white' : '#333',
+  background: active ? '#179ed3' : 'none'
 }));
 
 export const ListGroup = styled('ul')({
