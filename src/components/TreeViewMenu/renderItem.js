@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 const DEFAULT_PADDING = 1.25;
 const LEVEL_SPACE = 1.25;
 const ICON_SIZE = 1;
-const DefaultToggleIcon = ({ on }) => <div>{on ? '-' : '+'}</div>;
+const ToggleIcon = ({ on }) => <div>{on ? '-' : '+'}</div>;
 
 const ToggleIconContainer = styled('div')(({ level = 0 }) => ({
   position: 'absolute',
@@ -36,35 +36,28 @@ export const renderSearch = onSearch => (
   <Input placeholder="Type and search" onChange={onSearch} />
 );
 
-const renderItem = ({
+export const renderItem = ({
   hasSubItems = false,
   isOpen = false,
   level = 0,
   onClick,
   active,
   key,
-  toggleIcon = DefaultToggleIcon,
   label,
   ...props
-}) => {
-  const ToggleIcon = toggleIcon;
-
-  return (
-    <ListItemContainer
-      level={level}
-      onClick={onClick}
-      active={active}
-      key={key}
-      {...props}
-    >
-      {hasSubItems && (
-        <ToggleIconContainer level={level}>
-          <ToggleIcon on={isOpen} />
-        </ToggleIconContainer>
-      )}
-      {label}
-    </ListItemContainer>
-  );
-};
-
-export default renderItem;
+}) => (
+  <ListItemContainer
+    level={level}
+    onClick={onClick}
+    active={active}
+    key={key}
+    {...props}
+  >
+    {hasSubItems && (
+      <ToggleIconContainer level={level}>
+        <ToggleIcon on={isOpen} />
+      </ToggleIconContainer>
+    )}
+    {label}
+  </ListItemContainer>
+);

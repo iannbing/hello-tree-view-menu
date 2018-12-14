@@ -2,7 +2,8 @@ import React from 'react';
 import { debounce } from 'lodash';
 
 import walk from './walk';
-import defaultRenderItem, {
+import {
+  renderItem as defaultRenderItem,
   renderGroup as defaultRenderGroup,
   renderSearch as defaultRenderSearch
 } from './renderItem';
@@ -20,7 +21,6 @@ class TreeViewMenu extends React.Component {
     onClickItem: defaultOnClick,
     debounceTime: 125,
     renderItem: defaultRenderItem,
-    // groupComponent: defaultListGroup,
     renderGroup: defaultRenderGroup,
     renderSearch: defaultRenderSearch
   };
@@ -55,7 +55,7 @@ class TreeViewMenu extends React.Component {
   };
 
   loadListItems = () => {
-    const { data, activeKey, toggleIcon, renderItem } = this.props;
+    const { data, activeKey, renderItem } = this.props;
     const { openNodes, searchTerm } = this.state;
 
     const items = walk(data, { openNodes, searchTerm });
@@ -69,7 +69,6 @@ class TreeViewMenu extends React.Component {
         onClick,
         active: key === activeKey,
         key: nodePath,
-        toggleIcon,
         label
       });
     });
