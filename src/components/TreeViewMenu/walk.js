@@ -4,9 +4,9 @@ const walk = (data, props) =>
     .reduce(
       (all, [nodeName, node]) => [
         ...all,
-        ...(node.key ? generateBranch(node, nodeName, props) : [])
+        ...(node.key ? generateBranch(node, nodeName, props) : []),
       ],
-      []
+      [],
     );
 
 const generateBranch = (node, nodeName, props) => {
@@ -22,7 +22,7 @@ const generateBranch = (node, nodeName, props) => {
     isOpen,
     nodePath,
     ...props,
-    ...node
+    ...node,
   };
   const nextLevelItems = isOpen
     ? walk(nodes, { ...props, parent: nodePath, level: level + 1 })

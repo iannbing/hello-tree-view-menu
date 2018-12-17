@@ -5,7 +5,7 @@ import {
   ListGroup,
   InputGroup,
   InputGroupAddon,
-  Input
+  Input,
 } from 'reactstrap';
 
 const DEFAULT_PADDING = 1.25;
@@ -17,14 +17,14 @@ const ToggleIconContainer = styled('div')(({ level = 0 }) => ({
   position: 'absolute',
   left: `${ICON_SIZE + level * LEVEL_SPACE}rem`,
   width: `${ICON_SIZE}rem`,
-  height: `${ICON_SIZE}rem`
+  height: `${ICON_SIZE}rem`,
 }));
 
 const ListGroupItemWithPadding = styled(DefaultListGroupItem)(
   ({ level = 0 }) => ({
     paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`,
-    cursor: 'pointer'
-  })
+    cursor: 'pointer',
+  }),
 );
 
 export const renderItem = ({ hasSubItems, isOpen, level, label, ...props }) => (
@@ -38,11 +38,12 @@ export const renderItem = ({ hasSubItems, isOpen, level, label, ...props }) => (
   </ListGroupItemWithPadding>
 );
 
-export const renderGroup = items => <ListGroup>{items}</ListGroup>;
-
-export const renderSearch = onSearch => (
-  <InputGroup>
-    <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
-    <Input onChange={onSearch} />
-  </InputGroup>
+export const renderList = ({ onSearch, items }) => (
+  <>
+    <InputGroup>
+      <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
+      <Input onChange={onSearch} />
+    </InputGroup>
+    <ListGroup>{items}</ListGroup>
+  </>
 );

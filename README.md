@@ -8,10 +8,11 @@ To generate a `TreeViewMenu`, you need to provide data in the following structur
 
 ```javascript
 const treeData = {
-  releasenotes: {             // node name
-    label: 'Release Notes',   // label of this menu item
-    key: 'releasenotes',      // use url as unique key for the node, removing leading and trailing slashes
-    index: 0,                 // decide the rendering order on the same level
+  releasenotes: {
+    // node name
+    label: 'Release Notes', // label of this menu item
+    key: 'releasenotes', // use url as unique key for the node, removing leading and trailing slashes
+    index: 0, // decide the rendering order on the same level
     nodes: {
       'desktop-modeler': {
         label: 'Desktop Modeler',
@@ -26,19 +27,19 @@ const treeData = {
               '7.0': {
                 label: '7.0',
                 key: 'releasenotes/desktop-modeler/7.0', // note that the URL is not necessarily reflecting the node path
-                index: 0
-              }
-            }
-          }
-        }
-      }
-    }
+                index: 0,
+              },
+            },
+          },
+        },
+      },
+    },
   },
   atd: {
     label: 'ATS Guide',
     key: 'ats',
-    index: 1 // i.e. ATS Guide should be right after Release Notes (index: 0)
-  }
+    index: 1, // i.e. ATS Guide should be right after Release Notes (index: 0)
+  },
 };
 ```
 
@@ -49,9 +50,6 @@ And then import `TreeViewMenu` and use it.
   data={treeData}
   activeKey="releasenotes/desktop-modeler/7.0"
   search
-  onClickItem={({ node, label, key }) => {
-    console.log({ node, label, key });
-  }}
   debounceTime={500}
 />
 ```
@@ -60,16 +58,15 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props        | description                                                                                                                              | type                                 | default        |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | -------------- |
-| data         | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}                  | -              |
-| activeKey    | the node matching this key will be highlighted                                                                                           | string                               | ''             |
-| search       | enable `search` on the tree nodes' `label`                                                                                               | boolean                              | false          |
-| onClickItem  | A callback function that defines the behavior when user clicks on an node                                                                | ({node, label, key}): void           | `console.warn` |
-| debounceTime | debounce time for searching                                                                                                              | number                               | 125            |
-| renderItem   | a render props that renders the list item                                                                                                | (RenderItemProps) => React.ReactNode | -              |
-| renderSearch | a render props that takes a `onSearch` function as a parameter and renders the search field                                              | (onSearch) => React.ReactNode        | -              |
-| renderGroup  | a render props that takes an array of tree items as a parameter and renders the whole tree view menu                                     | (items) => React.ReactNode           | -              |
+| props        | description                                                                                                                              | type                                     | default        |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------------- |
+| data         | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}                      | -              |
+| activeKey    | the node matching this key will be highlighted                                                                                           | string                                   | ''             |
+| search       | enable `search` on the tree nodes' `label`                                                                                               | boolean                                  | false          |
+| onClickItem  | A callback function that defines the behavior when user clicks on an node                                                                | ({node, label, key}): void               | `console.warn` |
+| debounceTime | debounce time for searching                                                                                                              | number                                   | 125            |
+| renderItem   | a render props that renders the list item per `TreeNode`                                                                                 | (RenderItemProps) => React.ReactNode     | -              |
+| renderList   | a render props that renders the whole tree menu; `items` is an array of rendered `TreeNode`s                                             | ({ onSearch, items }) => React.ReactNode | -              |
 
 TreeNode
 

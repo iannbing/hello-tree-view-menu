@@ -4,8 +4,7 @@ import { debounce } from 'lodash';
 import walk from './walk';
 import {
   renderItem as defaultRenderItem,
-  renderGroup as defaultRenderGroup,
-  renderSearch as defaultRenderSearch
+  renderList as defaultRenderList,
 } from './renderProps';
 
 const defaultOnClick = props => console.log(props); // eslint-disable-line no-console
@@ -21,8 +20,7 @@ class TreeViewMenu extends React.Component {
     onClickItem: defaultOnClick,
     debounceTime: 125,
     renderItem: defaultRenderItem,
-    renderGroup: defaultRenderGroup,
-    renderSearch: defaultRenderSearch
+    renderList: defaultRenderList,
   };
 
   state = { openNodes: [], searchTerm: '' };
@@ -41,7 +39,7 @@ class TreeViewMenu extends React.Component {
     const { openNodes } = this.state;
     if (openNodes.includes(node)) {
       this.setState({
-        openNodes: openNodes.filter(openNode => openNode !== node)
+        openNodes: openNodes.filter(openNode => openNode !== node),
       });
     } else {
       this.setState({ openNodes: [...openNodes, node] });
@@ -69,17 +67,19 @@ class TreeViewMenu extends React.Component {
         onClick,
         active: key === activeKey,
         key: nodePath,
-        label
+        label,
       });
     });
   };
 
   render() {
-    const { data, search, renderSearch, renderGroup } = this.props;
+    const { data, search, renderList } = this.props;
     return (
       <>
-        {search && renderSearch(this.onSearch)}
-        {data && renderGroup(this.loadListItems())}
+        {renderList({
+          onSearch: search ? this.onSearch : null,
+          items: data ? this.loadListItems() : [],
+        })}
       </>
     );
   }

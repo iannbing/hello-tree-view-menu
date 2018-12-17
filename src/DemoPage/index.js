@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
 import transpose from './transpose';
-import { renderItem, renderGroup, renderSearch } from './renderProps';
+import { renderItem, renderList } from './renderProps';
 
 const cleanPath = path =>
   path
@@ -52,8 +52,7 @@ class DemoPage extends Component {
             }}
             debounceTime={125}
             renderItem={renderItem}
-            renderGroup={renderGroup}
-            renderSearch={renderSearch}
+            renderList={renderList}
           />
         )}
       </>

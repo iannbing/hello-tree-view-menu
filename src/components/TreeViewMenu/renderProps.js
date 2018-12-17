@@ -10,30 +10,31 @@ const ToggleIconContainer = styled('div')(({ level = 0 }) => ({
   position: 'absolute',
   left: `${ICON_SIZE + level * LEVEL_SPACE}rem`,
   width: `${ICON_SIZE}rem`,
-  height: `${ICON_SIZE}rem`
+  height: `${ICON_SIZE}rem`,
 }));
 
 const ListItemContainer = styled('li')(({ level = 0, active }) => ({
   paddingLeft: `${DEFAULT_PADDING + ICON_SIZE + level * LEVEL_SPACE}rem`,
   cursor: 'pointer',
   color: active ? 'white' : '#333',
-  background: active ? '#179ed3' : 'none'
+  background: active ? '#179ed3' : 'none',
 }));
 
 const ListGroup = styled('ul')({
   listStyleType: 'none',
-  paddingLeft: 0
+  paddingLeft: 0,
 });
-
-export const renderGroup = items => <ListGroup>{items}</ListGroup>;
 
 const Input = styled('input')({
   margin: '.5em',
-  paddingLeft: '.4em'
+  paddingLeft: '.4em',
 });
 
-export const renderSearch = onSearch => (
-  <Input placeholder="Type and search" onChange={onSearch} />
+export const renderList = ({ onSearch, items }) => (
+  <>
+    {onSearch && <Input placeholder="Type and search" onChange={onSearch} />}
+    <ListGroup>{items}</ListGroup>
+  </>
 );
 
 export const renderItem = ({
