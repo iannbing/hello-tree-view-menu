@@ -1,27 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderItem should render the toggle icon with "" equals to true 1`] = `
-.emotion-0 {
-  padding-left: 3.5rem;
-  cursor: pointer;
-  color: #333;
-  background: none;
-}
-
-<li
-  className="emotion-0"
->
-  <Styled(div)
-    level={1}
-  >
-    <ToggleIcon
-      on={true}
-    />
-  </Styled(div)>
-  foo
-</li>
-`;
-
 exports[`renderItem should render the toggle icon with "on" equals to false 1`] = `
 .emotion-0 {
   padding-left: 3.5rem;
@@ -38,6 +16,28 @@ exports[`renderItem should render the toggle icon with "on" equals to false 1`] 
   >
     <ToggleIcon
       on={false}
+    />
+  </Styled(div)>
+  foo
+</li>
+`;
+
+exports[`renderItem should render the toggle icon with "on" equals to true 1`] = `
+.emotion-0 {
+  padding-left: 3.5rem;
+  cursor: pointer;
+  color: #333;
+  background: none;
+}
+
+<li
+  className="emotion-0"
+>
+  <Styled(div)
+    level={1}
+  >
+    <ToggleIcon
+      on={true}
     />
   </Styled(div)>
   foo

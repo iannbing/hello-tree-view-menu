@@ -60,9 +60,8 @@ exports[`DemoPage should render correctly 1`] = `
     }
     debounceTime={125}
     onClickItem={[Function]}
-    renderGroup={[Function]}
     renderItem={[Function]}
-    renderSearch={[Function]}
+    renderList={[Function]}
     search={true}
   />
 </DemoPage>
