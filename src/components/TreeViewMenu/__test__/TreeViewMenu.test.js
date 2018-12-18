@@ -7,7 +7,7 @@ const mockData = {
   atd: {
     label: 'ATS Guide',
     key: 'ats',
-    index: 1 // ATS Guide should be after Release Notes
+    index: 1, // ATS Guide should be after Release Notes
   },
   releasenotes: {
     label: 'Release Notes',
@@ -27,14 +27,14 @@ const mockData = {
               '7.0': {
                 label: '7.0',
                 key: 'releasenotes/desktop-modeler/7.0',
-                index: 0
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+                index: 0,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 describe('TreeViewMenu', () => {
@@ -43,19 +43,7 @@ describe('TreeViewMenu', () => {
       <TreeViewMenu
         data={mockData}
         activeKey="releasenotes/desktop-modeler/7"
-      />
-    );
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render search box', () => {
-    const wrapper = shallow(
-      <TreeViewMenu
-        data={mockData}
-        activeKey="releasenotes/desktop-modeler/7"
-        search
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();

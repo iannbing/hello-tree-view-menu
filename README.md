@@ -49,7 +49,6 @@ And then import `TreeViewMenu` and use it.
 <TreeViewMenu
   data={treeData}
   activeKey="releasenotes/desktop-modeler/7.0"
-  search
   debounceTime={500}
 />
 ```
@@ -58,15 +57,14 @@ And then import `TreeViewMenu` and use it.
 
 TreeViewMenu
 
-| props        | description                                                                                                                              | type                                     | default        |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------------- |
-| data         | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}                      | -              |
-| activeKey    | the node matching this key will be highlighted                                                                                           | string                                   | ''             |
-| search       | enable `search` on the tree nodes' `label`                                                                                               | boolean                                  | false          |
-| onClickItem  | A callback function that defines the behavior when user clicks on an node                                                                | ({node, label, key}): void               | `console.warn` |
-| debounceTime | debounce time for searching                                                                                                              | number                                   | 125            |
-| renderItem   | a render props that renders the list item per `TreeNode`                                                                                 | (RenderItemProps) => React.ReactNode     | -              |
-| renderList   | a render props that renders the whole tree menu; `items` is an array of rendered `TreeNode`s                                             | ({ onSearch, items }) => React.ReactNode | -              |
+| props        | description                                                                                                                              | type                                 | default        |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | -------------- |
+| data         | Data that defines the structure of the tree. You can nest it as many levels as you want, but note that it might cause performance issue. | {[string]:TreeNode}                  | -              |
+| activeKey    | the node matching this key will be highlighted                                                                                           | string                               | ''             |
+| onClickItem  | A callback function that defines the behavior when user clicks on an node                                                                | ({node, label, key}): void           | `console.warn` |
+| debounceTime | debounce time for searching                                                                                                              | number                               | 125            |
+| renderItem   | a render props that renders the list item per `TreeNode`                                                                                 | (RenderItemProps) => React.ReactNode | -              |
+| renderList   | a render props that renders the whole tree menu; `items` is an array of rendered `TreeNode`s                                             | (RenderListProps) => React.ReactNode | -              |
 
 TreeNode
 
@@ -88,6 +86,13 @@ RenderItemProps
 | active      | if current node is being selected                        | boolean  | -       |
 | key         | `TreeNode` `key`                                         | string   | -       |
 | label       | `TreeNode` `label`                                       | string   | -       |
+
+RenderListProps
+
+| props  | description                                                    | type                    | default |
+| ------ | -------------------------------------------------------------- | ----------------------- | ------- |
+| search | A function that takes a string to filter the label of the item | (value: string) => void | -       |
+| items  | The rendered Item from the renderItem function                 | ReactNode[]             | []      |
 
 ## Dependencies
 

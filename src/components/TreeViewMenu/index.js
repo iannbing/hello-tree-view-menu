@@ -16,7 +16,6 @@ class TreeViewMenu extends React.Component {
   static defaultProps = {
     data: null,
     activeKey: '',
-    search: false,
     onClickItem: defaultOnClick,
     debounceTime: 125,
     renderItem: defaultRenderItem,
@@ -30,8 +29,7 @@ class TreeViewMenu extends React.Component {
     this.search = getDebouncedSearch(debounceTime);
   }
 
-  onSearch = e => {
-    const { value } = e.target;
+  onSearch = value => {
     this.search(searchTerm => this.setState({ searchTerm }), value);
   };
 
@@ -73,11 +71,11 @@ class TreeViewMenu extends React.Component {
   };
 
   render() {
-    const { data, search, renderList } = this.props;
+    const { data, renderList } = this.props;
     return (
       <>
         {renderList({
-          onSearch: search ? this.onSearch : null,
+          search: this.onSearch,
           items: data ? this.loadListItems() : [],
         })}
       </>

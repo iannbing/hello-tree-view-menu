@@ -30,12 +30,18 @@ const Input = styled('input')({
   paddingLeft: '.4em',
 });
 
-export const renderList = ({ onSearch, items }) => (
-  <>
-    {onSearch && <Input placeholder="Type and search" onChange={onSearch} />}
-    <ListGroup>{items}</ListGroup>
-  </>
-);
+export const renderList = ({ search, items }) => {
+  const onSearch = e => {
+    const { value } = e.target;
+    search(value);
+  };
+  return (
+    <>
+      <Input placeholder="Type and search" onChange={onSearch} />
+      <ListGroup>{items}</ListGroup>
+    </>
+  );
+};
 
 export const renderItem = ({
   hasSubItems = false,

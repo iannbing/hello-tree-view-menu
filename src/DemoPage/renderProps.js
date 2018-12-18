@@ -38,12 +38,18 @@ export const renderItem = ({ hasSubItems, isOpen, level, label, ...props }) => (
   </ListGroupItemWithPadding>
 );
 
-export const renderList = ({ onSearch, items }) => (
-  <>
-    <InputGroup>
-      <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
-      <Input onChange={onSearch} />
-    </InputGroup>
-    <ListGroup>{items}</ListGroup>
-  </>
-);
+export const renderList = ({ search, items }) => {
+  const onSearch = e => {
+    const { value } = e.target;
+    search(value);
+  };
+  return (
+    <>
+      <InputGroup>
+        <InputGroupAddon addonType="prepend">Search</InputGroupAddon>
+        <Input onChange={onSearch} />
+      </InputGroup>
+      <ListGroup>{items}</ListGroup>
+    </>
+  );
+};
