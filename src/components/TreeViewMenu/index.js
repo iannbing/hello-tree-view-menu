@@ -9,9 +9,6 @@ import {
 
 const defaultOnClick = props => console.log(props); // eslint-disable-line no-console
 
-const getDebouncedSearch = timeout =>
-  debounce((searchFunction, value) => searchFunction(value), timeout);
-
 class TreeViewMenu extends React.Component {
   static defaultProps = {
     data: null,
@@ -26,8 +23,11 @@ class TreeViewMenu extends React.Component {
 
   onSearch = value => {
     const { debounceTime } = this.props;
-    const search = getDebouncedSearch(debounceTime);
-    search(searchTerm => this.setState({ searchTerm }), value);
+    const search = debounce(
+      searchTerm => this.setState({ searchTerm }),
+      debounceTime,
+    );
+    search(value);
   };
 
   toggleNode = node => {
