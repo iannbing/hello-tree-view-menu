@@ -51,7 +51,7 @@ class TreeViewMenu extends React.Component {
     const { data, activeKey, renderItem } = this.props;
     const { openNodes, searchTerm } = this.state;
 
-    const items = walk(data, { openNodes, searchTerm });
+    const items = walk({ data, openNodes, searchTerm });
 
     return items.map(({ isOpen, nodes, key, level, nodePath, label }) => {
       const onClick = this.getOnClickItem({ nodePath, label, key });

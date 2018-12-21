@@ -1,4 +1,4 @@
-const walk = (data, props) =>
+const walk = ({ data, ...props }) =>
   Object.entries(data)
     .sort((a, b) => a[1].index - b[1].index)
     .reduce(
@@ -25,7 +25,7 @@ const generateBranch = (node, nodeName, props) => {
     ...node,
   };
   const nextLevelItems = isOpen
-    ? walk(nodes, { ...props, parent: nodePath, level: level + 1 })
+    ? walk({ data: nodes, ...props, parent: nodePath, level: level + 1 })
     : [];
 
   return [currentItem, ...nextLevelItems].filter(x => x);
