@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
+import TreeViewMenu from 'react-simple-tree-menu';
 
-import TreeViewMenu from '../components/TreeViewMenu';
 import data from '../data/spaces.json';
 import transpose from './transpose';
 import { renderItem, renderList } from './renderProps';
