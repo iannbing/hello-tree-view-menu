@@ -8641,10 +8641,10 @@ react-scripts@2.1.1:
   optionalDependencies:
     fsevents "1.2.4"
 
-react-simple-tree-menu@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.0.1.tgz#9e2dd9e16d9699fbd8c53313037614198ce7f79a"
-  integrity sha512-wrRvcfOncXXSb89hUikhiZ6Vp11oCx0Q1+VRhQcUnEY+0d9DOdRP/BxeXE+73ooKigw+XoCnTd1h1HfJEvSSsw==
+react-simple-tree-menu@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.0.2.tgz#d2f7770d241aa9c3897341f91ee7740554a07609"
+  integrity sha512-ybUc+WI118OterT92erso+a8f8mzNA+WtouGhUD7w7TKU6G8/EfWJD4aUGKgR3Bqf8WbI9+pDgX+aEVo9TOV6g==
   dependencies:
     "@types/react" "^16.7.17"
     "@types/react-dom" "^16.0.11"

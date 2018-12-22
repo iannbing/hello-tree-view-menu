@@ -45,7 +45,6 @@ class DemoPage extends Component {
           <TreeViewMenu
             data={treeData}
             activeKey={activeKey}
-            search
             onClickItem={({ nodePath, label, key }) => {
               this.navigate(key);
               console.log({ nodePath, label, key }); // eslint-disable-line no-console
