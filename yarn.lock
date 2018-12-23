@@ -8641,14 +8641,13 @@ react-scripts@2.1.1:
   optionalDependencies:
     fsevents "1.2.4"
 
-react-simple-tree-menu@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.0.2.tgz#d2f7770d241aa9c3897341f91ee7740554a07609"
-  integrity sha512-ybUc+WI118OterT92erso+a8f8mzNA+WtouGhUD7w7TKU6G8/EfWJD4aUGKgR3Bqf8WbI9+pDgX+aEVo9TOV6g==
+react-simple-tree-menu@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.0.3.tgz#c7ff9a33103681911bd34522ac4dfc4312c5211d"
+  integrity sha512-fcm4wiUaxtV18540KNyt2mQ302Nr+awQb99VJWIRRGrTk6rhJdpPAU2us/b5pRImGzSuyI5dl755iJz2WB8AAw==
   dependencies:
     "@types/react" "^16.7.17"
     "@types/react-dom" "^16.0.11"
-    babel-polyfill "^6.26.0"
     emotion "^9.2.12"
     lodash "^4.17.11"
     react-emotion "^9.2.12"
