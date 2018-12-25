@@ -18,11 +18,11 @@
   "scripts": {
     "start": "react-app-rewired start",
     "start-analyze": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "REACT_APP_NAVIGATION_PATH=/hello-tree-view-menu react-app-rewired build",
     "test": "REACT_APP_NAVIGATION_PATH=/ react-app-rewired test",
     "test-dev": "react-app-rewired test --env=jsdom --watch --coverage=false",
     "eject": "react-scripts eject",
-    "deploy": "REACT_APP_NAVIGATION_PATH=/hello-tree-view-menu yarn build && gh-pages -d build"
+    "deploy": "yarn build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
