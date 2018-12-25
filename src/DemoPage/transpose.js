@@ -1,6 +1,7 @@
 import { merge } from 'lodash';
 
 const createObjFromKeys = ({ obj = {}, keys, value }) => {
+  if (keys.length === 0) return {};
   if (keys.length === 1) {
     obj[keys[0]] = value;
   } else {
@@ -9,13 +10,12 @@ const createObjFromKeys = ({ obj = {}, keys, value }) => {
     obj[key].nodes = {
       ...obj[key].nodes,
       ...createObjFromKeys({
-        obj: typeof obj[key].nodes === 'undefined' ? {} : obj[key].nodes,
+        obj: !obj[key].nodes ? {} : obj[key].nodes,
         keys,
-        value
-      })
+        value,
+      }),
     };
   }
-
   return obj;
 };
 
@@ -32,7 +32,8 @@ const transposeSpace = ({ space, spaceIndex }) => {
     const url = currentPage.u;
     const isSpace = !!currentPage.m;
     const parentPage = currentPage.p;
-    const path = url.split('/').filter(x => x);
+    const path = url ? url.split('/').filter(x => x) : '';
+    const key = url ? cleanPath(url) : '';
 
     // if it has a parent page, insert it to have complete nodes
     if (parentPage) path.splice(path.length - 1, 0, parentPage);
@@ -41,9 +42,9 @@ const transposeSpace = ({ space, spaceIndex }) => {
       keys: path,
       value: {
         label,
-        key: cleanPath(url),
-        index: isSpace ? spaceIndex : pageIndex
-      }
+        key,
+        index: isSpace ? spaceIndex : pageIndex,
+      },
     });
     return merge(newObj, allPages);
   }, {});
@@ -54,16 +55,16 @@ const transpose = ({ data, index }) => {
     return data.reduce((allSpaces, currentSpace, spaceIndex) => {
       const currentSpacePages = transposeSpace({
         space: currentSpace,
-        spaceIndex
+        spaceIndex,
       });
       return {
         ...allSpaces,
-        ...currentSpacePages
+        ...currentSpacePages,
       };
     }, {});
   return transposeSpace({
     space: data,
-    spaceIndex: index
+    spaceIndex: index,
   });
 };
 

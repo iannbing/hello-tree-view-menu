@@ -8,10 +8,10 @@ const mockData = [{ foo: 'bar' }];
 const mockPath = '/foo';
 const expectedActiveKey = 'foo';
 
-jest.mock('../../components/TreeViewMenu', () => 'mock-tree-view-menu');
+jest.mock('react-simple-tree-menu', () => 'mock-tree-view-menu');
 jest.mock('../../data/spaces.json', () => [{ foo: 'bar' }]);
 jest.mock('../transpose', () =>
-  jest.fn().mockImplementation(({ data }) => data)
+  jest.fn().mockImplementation(({ data }) => data),
 );
 
 describe('DemoPage', () => {
@@ -19,7 +19,7 @@ describe('DemoPage', () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={[{ pathname: mockPath, key: 'path' }]}>
         <Route path={mockPath} render={props => <DemoPage {...props} />} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(wrapper.find('DemoPage')).toMatchSnapshot();
@@ -29,13 +29,12 @@ describe('DemoPage', () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={[{ pathname: mockPath, key: 'path' }]}>
         <Route path={mockPath} render={props => <DemoPage {...props} />} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(wrapper.find('mock-tree-view-menu').prop('data')).toEqual(mockData);
     expect(wrapper.find('mock-tree-view-menu').prop('activeKey')).toEqual(
-      expectedActiveKey
+      expectedActiveKey,
     );
-    expect(wrapper.find('mock-tree-view-menu').prop('search')).toEqual(true);
   });
 });

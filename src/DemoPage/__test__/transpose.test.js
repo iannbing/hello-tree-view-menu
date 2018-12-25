@@ -8,37 +8,33 @@ describe('transpose', () => {
   const expected = {
     releasenotes: {
       label: 'Release Notes',
-      onClick: () => ({}),
       key: 'releasenotes',
       index: 0,
       nodes: {
         'desktop-modeler': {
           label: 'Desktop Modeler',
-          onClick: () => ({}),
           key: 'releasenotes/desktop-modeler',
           index: 1,
           nodes: {
             7: {
               label: '7',
-              onClick: () => ({}),
               key: 'releasenotes/desktop-modeler/7',
               index: 2,
               nodes: {
                 '7.0': {
                   label: '7.0',
-                  onClick: () => ({}),
                   key: 'releasenotes/desktop-modeler/7.0',
-                  index: 3
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  index: 3,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   };
   it('should transpose an array of space', () => {
-    const transposed = transpose({ data, navigate: () => ({}) });
+    const transposed = transpose({ data });
 
     const transposedValue = formatValue(transposed);
     const expectedValue = formatValue(expected);
@@ -48,8 +44,33 @@ describe('transpose', () => {
   it('should transpose a single space', () => {
     const transposed = transpose({
       data: releasenotes,
-      navigate: () => ({}),
-      index: 0
+      index: 0,
+    });
+
+    const transposedValue = formatValue(transposed);
+    const expectedValue = formatValue(expected);
+
+    expect(transposedValue).toEqual(expectedValue);
+  });
+  it('should ignore spaces without key', () => {
+    const transposed = transpose({
+      data: [
+        ...data,
+        {
+          filename: 'foo.json',
+          content: {
+            categories: ['Foo'],
+            pages: [
+              {
+                t: 'Release Notes', // title
+                i: 'index',
+                d: '/releasenotes/', // directory
+                m: true, // is root category
+              },
+            ],
+          },
+        },
+      ],
     });
 
     const transposedValue = formatValue(transposed);

@@ -62,7 +62,6 @@ exports[`DemoPage should render correctly 1`] = `
     onClickItem={[Function]}
     renderItem={[Function]}
     renderList={[Function]}
-    search={true}
   />
 </DemoPage>
 `;

@@ -34,7 +34,7 @@ export const renderItem = ({ hasSubItems, isOpen, level, label, ...props }) => (
         <ToggleIcon on={isOpen} />
       </ToggleIconContainer>
     )}
-    {label}
+    {label || 'Unkown'}
   </ListGroupItemWithPadding>
 );
 
