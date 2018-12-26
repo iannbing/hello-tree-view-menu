@@ -8,22 +8,22 @@ describe('transpose', () => {
   const expected = {
     releasenotes: {
       label: 'Release Notes',
-      key: 'releasenotes',
+      url: 'releasenotes',
       index: 0,
       nodes: {
         'desktop-modeler': {
           label: 'Desktop Modeler',
-          key: 'releasenotes/desktop-modeler',
+          url: 'releasenotes/desktop-modeler',
           index: 1,
           nodes: {
             7: {
               label: '7',
-              key: 'releasenotes/desktop-modeler/7',
+              url: 'releasenotes/desktop-modeler/7',
               index: 2,
               nodes: {
                 '7.0': {
                   label: '7.0',
-                  key: 'releasenotes/desktop-modeler/7.0',
+                  url: 'releasenotes/desktop-modeler/7.0',
                   index: 3,
                 },
               },

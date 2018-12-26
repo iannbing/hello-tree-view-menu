@@ -21,9 +21,11 @@ const createObjFromKeys = ({ obj = {}, keys, value }) => {
 
 const cleanPath = path =>
   path
-    .split('/')
-    .filter(x => x)
-    .join('/');
+    ? path
+        .split('/')
+        .filter(x => x)
+        .join('/')
+    : '';
 
 const transposeSpace = ({ space, spaceIndex }) => {
   const { content } = space;
@@ -32,8 +34,7 @@ const transposeSpace = ({ space, spaceIndex }) => {
     const url = currentPage.u;
     const isSpace = !!currentPage.m;
     const parentPage = currentPage.p;
-    const path = url ? url.split('/').filter(x => x) : '';
-    const key = url ? cleanPath(url) : '';
+    const path = url ? url.split('/').filter(x => x) : [];
 
     // if it has a parent page, insert it to have complete nodes
     if (parentPage) path.splice(path.length - 1, 0, parentPage);
@@ -42,8 +43,8 @@ const transposeSpace = ({ space, spaceIndex }) => {
       keys: path,
       value: {
         label,
-        key,
         index: isSpace ? spaceIndex : pageIndex,
+        url: cleanPath(url),
       },
     });
     return merge(newObj, allPages);

@@ -5,7 +5,7 @@ import TreeViewMenu from 'react-simple-tree-menu';
 
 import data from '../data/spaces.json';
 import transpose from './transpose';
-import { renderItem, renderList } from './renderProps';
+import { getRenderItem, renderList } from './renderProps';
 
 const cleanPath = path =>
   path
@@ -17,7 +17,7 @@ class DemoPage extends Component {
   static getDerivedStateFromProps(props) {
     const path = get(props, 'location.pathname');
 
-    return { path };
+    return { path: cleanPath(path) };
   }
 
   state = { path: '', treeData: null };
@@ -37,20 +37,19 @@ class DemoPage extends Component {
   };
 
   render() {
-    const { path, treeData } = this.state;
-    const activeKey = cleanPath(path);
+    const { treeData, path } = this.state;
+
     return (
       <>
         {treeData && (
           <TreeViewMenu
             data={treeData}
-            activeKey={activeKey}
-            onClickItem={({ nodePath, label, key }) => {
-              this.navigate(key);
-              console.log({ nodePath, label, key }); // eslint-disable-line no-console
+            onClickItem={({ url, label, key }) => {
+              this.navigate(url);
+              console.log({ label, key, url }); // eslint-disable-line no-console
             }}
             debounceTime={125}
-            renderItem={renderItem}
+            renderItem={getRenderItem(path)}
             renderList={renderList}
           />
         )}

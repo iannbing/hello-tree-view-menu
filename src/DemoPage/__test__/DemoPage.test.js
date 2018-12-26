@@ -6,7 +6,6 @@ import DemoPage from '../index';
 
 const mockData = [{ foo: 'bar' }];
 const mockPath = '/foo';
-const expectedActiveKey = 'foo';
 
 jest.mock('react-simple-tree-menu', () => 'mock-tree-view-menu');
 jest.mock('../../data/spaces.json', () => [{ foo: 'bar' }]);
@@ -33,8 +32,5 @@ describe('DemoPage', () => {
     );
 
     expect(wrapper.find('mock-tree-view-menu').prop('data')).toEqual(mockData);
-    expect(wrapper.find('mock-tree-view-menu').prop('activeKey')).toEqual(
-      expectedActiveKey,
-    );
   });
 });
