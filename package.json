@@ -12,7 +12,7 @@
     "react-emotion": "^9.2.12",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "react-simple-tree-menu": "0.0.4-beta6",
+    "react-simple-tree-menu": "0.0.4",
     "reactstrap": "^6.5.0"
   },
   "scripts": {
