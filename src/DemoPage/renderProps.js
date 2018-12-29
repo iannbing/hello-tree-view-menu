@@ -28,7 +28,7 @@ const ListGroupItemWithPadding = styled(DefaultListGroupItem)(
 );
 
 export const getRenderItem = path => ({
-  hasSubItems,
+  hasNodes,
   isOpen,
   level,
   label,
@@ -42,7 +42,7 @@ export const getRenderItem = path => ({
     onClick={onClick}
     active={url === path}
   >
-    {hasSubItems && (
+    {hasNodes && (
       <ToggleIconContainer level={level}>
         <ToggleIcon on={isOpen} />
       </ToggleIconContainer>
