@@ -51,22 +51,34 @@ const transposeSpace = ({ space, spaceIndex }) => {
   }, {});
 };
 
-const transpose = ({ data, index }) => {
-  if (Array.isArray(data))
-    return data.reduce((allSpaces, currentSpace, spaceIndex) => {
-      const currentSpacePages = transposeSpace({
-        space: currentSpace,
-        spaceIndex,
+const convertToArray = obj =>
+  Object.entries(obj).reduce(
+    (all, [key, { label, nodes, index, ...props }]) => [
+      ...all,
+      nodes
+        ? { key, label, ...props, nodes: convertToArray(nodes) }
+        : { key, label, ...props },
+    ],
+    [],
+  );
+
+const transpose = ({ data, index, toArray = false }) => {
+  const obj = Array.isArray(data)
+    ? data.reduce((allSpaces, currentSpace, spaceIndex) => {
+        const currentSpacePages = transposeSpace({
+          space: currentSpace,
+          spaceIndex,
+        });
+        return {
+          ...allSpaces,
+          ...currentSpacePages,
+        };
+      }, {})
+    : transposeSpace({
+        space: data,
+        spaceIndex: index,
       });
-      return {
-        ...allSpaces,
-        ...currentSpacePages,
-      };
-    }, {});
-  return transposeSpace({
-    space: data,
-    spaceIndex: index,
-  });
+  return toArray ? convertToArray(obj) : obj;
 };
 
 export default transpose;

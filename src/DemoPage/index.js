@@ -27,7 +27,7 @@ class DemoPage extends Component {
   }
 
   processData = () => {
-    const treeData = transpose({ data });
+    const treeData = transpose({ data, toArray: true });
     this.setState({ treeData });
   };
 

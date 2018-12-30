@@ -33,11 +33,47 @@ describe('transpose', () => {
       },
     },
   };
+  const expectedArray = [
+    {
+      key: 'releasenotes',
+      label: 'Release Notes',
+      url: 'releasenotes',
+      nodes: [
+        {
+          key: 'desktop-modeler',
+          label: 'Desktop Modeler',
+          url: 'releasenotes/desktop-modeler',
+          nodes: [
+            {
+              key: '7',
+              label: '7',
+              url: 'releasenotes/desktop-modeler/7',
+              nodes: [
+                {
+                  key: '7.0',
+                  label: '7.0',
+                  url: 'releasenotes/desktop-modeler/7.0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
   it('should transpose an array of space', () => {
     const transposed = transpose({ data });
 
     const transposedValue = formatValue(transposed);
     const expectedValue = formatValue(expected);
+
+    expect(transposedValue).toEqual(expectedValue);
+  });
+  it('should transpose an array of space to an Array', () => {
+    const transposed = transpose({ data, toArray: true });
+
+    const transposedValue = formatValue(transposed);
+    const expectedValue = formatValue(expectedArray);
 
     expect(transposedValue).toEqual(expectedValue);
   });
