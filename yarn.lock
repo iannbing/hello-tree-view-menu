@@ -967,26 +967,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.9.tgz#a07bfa74331471e1dc22a47eb72026843f7b95c8"
   integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
 
-"@types/prop-types@*":
-  version "15.5.8"
-  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
-  integrity sha512-3AQoUxQcQtLHsK25wtTWIoIpgYjH3vSDroZOUr7PpCHw/jLY1RB9z9E8dBT/OSmwStVgkRNvdh+ZHNiomRieaw==
-
-"@types/react-dom@^16.0.11":
-  version "16.0.11"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.11.tgz#bd10ccb0d9260343f4b9a49d4f7a8330a5c1f081"
-  integrity sha512-x6zUx9/42B5Kl2Vl9HlopV8JF64wLpX3c+Pst9kc1HgzrsH+mkehe/zmHMQTplIrR48H2gpU7ZqurQolYu8XBA==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react@*", "@types/react@^16.7.17":
-  version "16.7.18"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.18.tgz#f4ce0d539a893dd61e36cd11ae3a5e54f5a48337"
-  integrity sha512-Tx4uu3ppK53/iHk6VpamMP3f3ahfDLEVt3ZQc8TFm30a1H3v9lMsCntBREswZIW/SKrvJjkb3Hq8UwO6GREBng==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
 "@types/tapable@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
@@ -2930,11 +2910,6 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   integrity sha512-364AI1l/M5TYcFH83JnOH/pSqgaNnKmYgKrm0didZMGKWjQB60dymwWy1rKUgL3J1ffdq9xVi2yGLHdSjjSNog==
   dependencies:
     cssom "0.3.x"
-
-csstype@^2.2.0:
-  version "2.5.8"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.8.tgz#4ce5aa16ea0d562ef9105fa3ae2676f199586a35"
-  integrity sha512-r4DbsyNJ7slwBSKoGesxDubRWJ71ghG8W2+1HcsDlAo12KGca9dDLv0u98tfdFw7ldBdoA7XmCnI6Q8LpAJXaQ==
 
 csstype@^2.5.2:
   version "2.5.7"
@@ -8641,16 +8616,12 @@ react-scripts@2.1.1:
   optionalDependencies:
     fsevents "1.2.4"
 
-react-simple-tree-menu@0.0.4-beta6:
-  version "0.0.4-beta6"
-  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.0.4-beta6.tgz#b99e94863d0e22588f8978ab1f1c2f4eb3bd0e74"
-  integrity sha512-/OYeH/esCVhsbM/yJXCtzDTMKpHRq04t72u71zGfO767oPEDJk3hZC7HhvcShsv8QMojhBC/A77/XjX0AAtHgw==
+react-simple-tree-menu@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-simple-tree-menu/-/react-simple-tree-menu-0.1.1.tgz#b970f9b9d60e1eb08f2bd06bfef3d3b7aaf733ae"
+  integrity sha512-vaMHnWVwekbTi0NLEJCgIQcTEf/FS3dZJNIQR4vSqX0K9vnqJLxUNt7WcMN8HfZmBJKRhtfLcMblfb+tzy6AXg==
   dependencies:
-    "@types/react" "^16.7.17"
-    "@types/react-dom" "^16.0.11"
-    emotion "^9.2.12"
     lodash "^4.17.11"
-    react-emotion "^9.2.12"
 
 react-test-renderer@^16.0.0-0:
   version "16.6.3"
