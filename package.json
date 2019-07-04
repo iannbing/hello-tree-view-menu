@@ -13,7 +13,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
     "react-simple-tree-menu": "0.1.3",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -22,7 +23,9 @@
     "test": "REACT_APP_NAVIGATION_PATH=/ react-app-rewired test",
     "test-dev": "react-app-rewired test --env=jsdom --watch --coverage=false",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && gh-pages -d build"
+    "deploy": "yarn build && gh-pages -d build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -74,5 +77,6 @@
     "classNameTemplate": "{filename}",
     "titleTemplate": "{title}",
     "ancestorSeparator": " > "
-  }
+  },
+  "snyk": true
 }
